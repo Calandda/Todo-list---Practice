@@ -1,1 +1,3 @@
-console.log('test');
+import saveData from './data/saveData.js';
+
+console.log(saveData.classTest());
