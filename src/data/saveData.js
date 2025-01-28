@@ -1,13 +1,74 @@
-class projectObject{
-    constructor(title,projectName,description,dueDate,priority,notes,check){
-        this.title = title;
-        this.projectName = projectName;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-        this.notes = notes;
-        this.check = check;
-    }
+function projectObject(title,projectName,description,dueDate,priority,notes,check){
+    title = title;
+    projectName = projectName;
+    description = description;
+    dueDate = dueDate;
+    priority = priority;
+    notes = notes;
+    check = check;
+
+    function getTitle(){
+        return(title);
+    };
+    function getProjectName(){
+        return(projectName);
+    };
+    function getDescription(){
+        return(description);
+    };
+    function getDueDate(){
+        return(date);
+    };
+    function getPriority(){
+        return(priority);
+    };
+    function getNotes(){
+        return(notes);
+    };
+    function getCheck(){
+        return(check);
+    };
+    function setTitle(temp){
+        title = temp;
+    };
+    function setProjectName(temp){
+        projectName = temp;
+    };
+    function setDescription(temp){
+        description = temp;
+    };
+    function setDueDate(temp){
+        dueDate = temp;
+    };
+    function setPriority(temp){
+        priority = temp;
+    };
+    function setNotes(temp){
+        notes = temp;
+    };
+    function setCheck(temp){
+        if(check === true && temp == false){
+            check = false;
+        } else if(check === false && temp == true){
+            check = true;
+        }
+    };
+    return{
+    getTitle,
+    getProjectName,
+    getDescription,
+    getDueDate,
+    getPriority,
+    getNotes,
+    getCheck,
+    setTitle,
+    setProjectName,
+    setDescription,
+    setDueDate,
+    setPriority,
+    setNotes,
+    setCheck
+    };
 }
 class saveDataObject{
     projects = [];
@@ -25,8 +86,9 @@ class saveDataObject{
         this.projects.push(tempObject);
     };
     createProjectList(title,projectName,description,dueDate,priority,notes,check){
-        const tempObject = new projectObject(title,projectName,description,dueDate,priority,notes,check); 
-        for(let i = 0; i < this.projects.length;i++){
+        const PROJECT_LENGTH = this.projects.length;
+        const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check); 
+        for(let i = 0; i < PROJECT_LENGTH;i++){
             if(this.projects[i].projectName === projectName){
                 this.projects[i].projectTodoList.push(tempObject);
             };
@@ -34,6 +96,27 @@ class saveDataObject{
     };
     checkProject(){
         console.log(this.projects);
+    };
+    changeProjectList(title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check){
+        const PROJECT_LENGTH = this.projects.length;
+        let TODO_LENGTH = 0;
+        let currentProject = {};
+        for(let i = 0; i < PROJECT_LENGTH;i++){
+            if(this.projects[i].projectName === projectName){
+                TODO_LENGTH = this.projects[i].projectTodoList.length;
+                currentProject = this.projects[i].projectTodoList;
+                for(let j = 0;j < TODO_LENGTH;j++){
+                    if(currentProject[j].getTitle() === title){
+                       currentProject[j].setDescription(description);
+                       currentProject[j].setDueDate(dueDate);
+                       currentProject[j].setPriority(priority);
+                       currentProject[j].setNotes(notes);
+                       currentProject[j].setCheck(check);
+                    };
+                    console.log(this.projects[i].projectTodoList[j].getDescription());
+                };
+            };
+        };
     };
 };
 
