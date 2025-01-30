@@ -107,17 +107,43 @@ class saveDataObject{
                 currentProject = this.projects[i].projectTodoList;
                 for(let j = 0;j < TODO_LENGTH;j++){
                     if(currentProject[j].getTitle() === title){
-                       currentProject[j].setDescription(description);
-                       currentProject[j].setDueDate(dueDate);
-                       currentProject[j].setPriority(priority);
-                       currentProject[j].setNotes(notes);
-                       currentProject[j].setCheck(check);
+                        currentProject[j].setTitle(newTitle);
+                        currentProject[j].setProjectName(newProjectName);
+                        currentProject[j].setDescription(description);
+                        currentProject[j].setDueDate(dueDate);
+                        currentProject[j].setPriority(priority);
+                        currentProject[j].setNotes(notes);
+                        currentProject[j].setCheck(check);
                     };
                     console.log(this.projects[i].projectTodoList[j].getDescription());
                 };
             };
         };
     };
+    getProject(){
+        const PROJECT_LENGTH = this.projects.length;
+        let tempArray = [];
+        for(let i = 0;i < PROJECT_LENGTH;i++){
+            tempArray.push(this.projects[i].projectName);
+        };
+        return(tempArray);
+    }
+    getProjectList(projectName){
+        const PROJECT_LENGTH = this.projects.length;
+        let TODO_LENGTH = 0;
+        let  tempArray = [];
+        let currentProject = {};
+        for(let i = 0; i < PROJECT_LENGTH;i++){
+            if(this.projects[i].projectName === projectName){
+                TODO_LENGTH = this.projects[i].projectTodoList.length;
+                currentProject = this.projects[i].projectTodoList;
+                for(let j = 0;j < TODO_LENGTH; j++ ){
+                    tempArray.push(currentProject[j].getTitle());
+                };
+            }
+        };
+        return(tempArray);
+    }
 };
 
 const saveData = new saveDataObject();

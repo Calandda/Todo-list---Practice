@@ -5,6 +5,9 @@ saveData.createProjectList('Project Test','default Project','Project Description
 saveData.createProject('Daily');
 saveData.createProjectList('Project2 Test','Daily','Project2 Description','2025','1','Notes',true);
 saveData.createProjectList('Project2 Test2','Daily', 'Project2 Description', '2025', '2','Notes 2', false);
-saveData.changeProjectList('Project2 Test','Daily','Project2 Test', 'Daily','TEST DESCRIPTION','TEST DUEDATE','1','TEST NOTES', false);
-console.log(saveData.checkProject());
+//console.log(saveData.getProjectList('Daily'));
+saveData.changeProjectList('Project2 Test','Daily','Project2 NEW', 'Daily','TEST DESCRIPTION','TEST DUEDATE','1','TEST NOTES', false);
+//console.log(saveData.checkProject());
+//console.log(saveData.getProject());
+console.log(saveData.getProjectList('Daily'));
 //title,description,dueDate,priority,notes,check
