@@ -72,6 +72,7 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
 }
 class saveDataObject{
     projects = [];
+    projectList = [];
 
     constructor(){
         this.createProject('default Project');
@@ -115,7 +116,6 @@ class saveDataObject{
                         currentProject[j].setNotes(notes);
                         currentProject[j].setCheck(check);
                     };
-                    console.log(this.projects[i].projectTodoList[j].getDescription());
                 };
             };
         };
@@ -144,6 +144,32 @@ class saveDataObject{
         };
         return(tempArray);
     }
+    deleteProject(projectName){
+        this.projects = this.projects.filter(this.filterRemoveProject,projectName);
+    };
+    deleteProjectList(title,projectName){
+        let tempArray = [title,projectName];
+        const PROJECT_LENGTH = this.projects.length;
+        let currentProject;
+        let TODO_LENGTH;
+        for(let i = 0; i < PROJECT_LENGTH;i++){
+            if(this.projects[i].projectName === projectName){
+                TODO_LENGTH = this.projects[i].projectTodoList.length;
+                currentProject = this.projects[i].projectTodoList;
+                for(let j = 0; j < TODO_LENGTH;j++){
+                    if(currentProject[j].getTitle() === title){
+                        currentProject.splice(j,1);
+                    }
+                };
+            };
+        };
+    };
+    filterRemoveProject(project){
+        return(project.projectName != this);
+    };
+    filterChooseProject(project){
+        return(project.projectName == this);
+    };
 };
 
 const saveData = new saveDataObject();
