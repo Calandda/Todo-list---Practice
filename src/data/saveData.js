@@ -17,7 +17,7 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
         return(description);
     };
     function getDueDate(){
-        return(date);
+        return(dueDate);
     };
     function getPriority(){
         return(priority);

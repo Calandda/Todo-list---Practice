@@ -1,4 +1,6 @@
-
+.bgColorDarkGrayHalfOpacity{
+    background-color: hsla(0,0%,33%,0.5);
+}
 .bgColorDarkGray{
     background-color: hsl(0,0%,33%);
 }
@@ -37,21 +39,22 @@ aside{
     padding: 14px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 .logoTodo{
     width: 50px;
 }
-header{
+nav{
     display: flex;
     justify-content: center;
     padding: 30px;
     flex-basis: 20%;
 }
-header > img{
+nav > img{
     flex-basis: 160px;
 
 }
-header > p{
+nav > p{
     font-weight: 700;
     font-size: 36px;
 }
@@ -66,12 +69,39 @@ header > p{
     font-size: 14px;
     height: 20px;
     width: 20px;
-    padding: 0 auto;
+    display: flex;
+    justify-content: center;
     align-self: center;
+    border-radius: 50%;
 }
 .divProjectList:hover{
     background-color: hsla(0,0%,0%,0.25);
 }
 main{
     flex-basis: 80%;
+    padding: 20px 40px 20px 40px;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.sectionTodo{
+    flex-basis: 90%;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    overflow-y: auto;
+    gap: 20px;
+}
+
+.divTodoList{
+    flex-basis: 22%;
+    height: 300px;
+    padding: 10px 20px;
+}
+.divTodoList:hover{
+    background-color: hsla(0,0%,0%,0.25);
 }
