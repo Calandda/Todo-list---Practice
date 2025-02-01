@@ -34,6 +34,9 @@ aside{
 .sectionProject{
     flex-basis: 80%;
     margin: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
 }
 .logoTodo{
     width: 50px;
@@ -51,6 +54,23 @@ header > img{
 header > p{
     font-weight: 700;
     font-size: 36px;
+}
+.divProjectList{
+    padding: 0px 20px 0px 20px;
+    font-weight: 1000;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.pTodoCount{
+    font-size: 14px;
+    height: 20px;
+    width: 20px;
+    padding: 0 auto;
+    align-self: center;
+}
+.divProjectList:hover{
+    background-color: hsla(0,0%,0%,0.25);
 }
 main{
     flex-basis: 80%;
