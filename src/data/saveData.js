@@ -76,6 +76,7 @@ class saveDataObject{
 
     constructor(){
         this.createProject('default Project');
+        this.createProject('default Project Second');
     }
     classTest(){
         console.log('saveData confirmed');
@@ -124,7 +125,7 @@ class saveDataObject{
         const PROJECT_LENGTH = this.projects.length;
         let tempArray = [];
         for(let i = 0;i < PROJECT_LENGTH;i++){
-            tempArray.push(this.projects[i].projectName);
+            tempArray.push(this.projects[i]);
         };
         return(tempArray);
     }

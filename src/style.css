@@ -1,8 +1,15 @@
+
+.bgColorDarkGray{
+    background-color: hsl(0,0%,33%);
+}
 .bgColorGray{
     background-color: hsl(0,0%,50%);
 }
 .bgColorLightGray{
     background-color: hsl(0,0%,80%);
+}
+.bgColorBrown{
+    background-color: hsla(59, 100%, 50%, 0.2);
 }
 body{
     margin: 0;
@@ -10,8 +17,23 @@ body{
     display: flex;
 }
 aside{
+    display: flex;
+    flex-direction: column;
     height: 100vh;
-    flex-basis: 20%;
+    flex-basis: 400px
+}
+.sectionCreateProject{
+    padding: 10px 30px 10px 30px;
+}
+.sectionCreateProject > button{
+    border-radius: 0;
+    border: 0;
+    font-weight: 700;
+    padding: 4px;
+}
+.sectionProject{
+    flex-basis: 80%;
+    margin: 10px;
 }
 .logoTodo{
     width: 50px;
@@ -19,10 +41,11 @@ aside{
 header{
     display: flex;
     justify-content: center;
-    padding-top: 10px;
+    padding: 30px;
+    flex-basis: 20%;
 }
 header > img{
-    flex-basis: 30%;
+    flex-basis: 160px;
 
 }
 header > p{
