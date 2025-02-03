@@ -8,7 +8,7 @@ class domChangeObject{
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects.getProject()[0]);
         this.buttonCreate.addEventListener("click",(event) => {
-            this.inputProjectIndividual_createDiv();
+            this.inputProjectIndividual_createDiv(projects);
         });
     };
     fillProject(projects){
@@ -17,6 +17,7 @@ class domChangeObject{
             this.fillProjectIndividual(projects[i]);
         };
     };
+
     fillTodoList(project){
         const TODO_LENGTH = project.projectTodoList.length;
         for(let i = 0;i < TODO_LENGTH;i++){
@@ -44,7 +45,7 @@ class domChangeObject{
         });
         this.sectionProjectList.appendChild(divProject);
     };
-    inputProjectIndividual_createDiv(){
+    inputProjectIndividual_createDiv(project){
         const divCreate = document.createElement('div');
         const inputCreate = document.createElement('input');
         const submitCreate = document.createElement('button');
@@ -54,6 +55,9 @@ class domChangeObject{
         this.buttonCreate.disabled = true;
         divCreate.appendChild(inputCreate);
         submitCreate.addEventListener("click",(e)=>{
+            project.createProject(inputCreate.value); 
+            this.resetProjectList();
+            this.fillProject(project.getProject());
             this.inputProjectIndividual_deleteDiv();
         });
         divCreate.appendChild(submitCreate);
@@ -61,7 +65,6 @@ class domChangeObject{
         
     };
     inputProjectIndividual_deleteDiv(){
-        this.sectionProjectList.removeChild(this.sectionProjectList.lastChild);
         this.buttonCreate.disabled = false;
     };
     changeHeader(project){
