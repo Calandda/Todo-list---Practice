@@ -1,3 +1,5 @@
+import addIcon from "../images/add.png";
+
 class domChangeObject{
     constructor(projects){
         this.sectionProjectList = document.querySelector('.sectionProject');
@@ -23,6 +25,7 @@ class domChangeObject{
         for(let i = 0;i < TODO_LENGTH;i++){
             this.fillTodoListIndividual(project.projectTodoList[i]);
         };
+        this.fillTodoListAddButton();
     };
     fillProjectIndividual(project){
         const divProject = document.createElement('div');
@@ -94,6 +97,14 @@ class domChangeObject{
         divTodo.appendChild(divNotes);
         divTodo.appendChild(divCheck);
         this.sectionTodoList.appendChild(divTodo);
+    };
+    fillTodoListAddButton(){
+        const divAdd = document.createElement('div');
+        const imgAdd = document.createElement('img');
+        divAdd.classList.add('divAdd','divTodoList','bgColorDarkGrayHalfOpacity');
+        imgAdd.src = addIcon;
+        divAdd.appendChild(imgAdd);
+        this.sectionTodoList.appendChild(divAdd);
     };
     resetProjectList(){
         while(this.sectionProjectList.firstChild){

@@ -124,3 +124,8 @@ h1{
 .inputCreate{
   
 }
+.divAdd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+};
