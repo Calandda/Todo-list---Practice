@@ -51,7 +51,7 @@ class domChangeObject{
         inputCreate.classList.add('inputCreate');
         divCreate.classList.add('divInputCreate','divProjectList');
         submitCreate.textContent = 'CREATE';
-
+        this.buttonCreate.disabled = true;
         divCreate.appendChild(inputCreate);
         submitCreate.addEventListener("click",(e)=>{
             this.inputProjectIndividual_deleteDiv();
@@ -62,6 +62,7 @@ class domChangeObject{
     };
     inputProjectIndividual_deleteDiv(){
         this.sectionProjectList.removeChild(this.sectionProjectList.lastChild);
+        this.buttonCreate.disabled = false;
     };
     changeHeader(project){
         this.sectionProjectHeader.textContent = project.projectName;
