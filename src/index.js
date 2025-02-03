@@ -19,4 +19,4 @@ saveData.createProjectList('Project2 Test3', 'Daily', 'Project3 Description', '2
 //console.log(saveData.getProjectList('Daily'));
 //title,description,dueDate,priority,notes,check
 
-const domChange = new domChangeObject(saveData.getProject());
+const domChange = new domChangeObject(saveData);
