@@ -119,13 +119,14 @@ h1{
     align-self: center;
 };
 .divInputCreate{
-    padding: 20px;
-};
-.inputCreate{
-  
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 .divAdd{
     display: flex;
     justify-content: center;
     align-items: center;
+};
+.divAddSmall{
 };

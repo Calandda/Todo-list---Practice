@@ -1,23 +1,24 @@
 import addIcon from "../images/add.png";
+import smallAddIcon from "../images/addSmall.png";
 
 class domChangeObject{
     constructor(projects){
         this.sectionProjectList = document.querySelector('.sectionProject');
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
-        this.buttonCreate = document.querySelector('.buttonCreate');
-        this.fillProject(projects.getProject());
+        this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects.getProject()[0]);
-        this.buttonCreate.addEventListener("click",(event) => {
-            this.inputProjectIndividual_createDiv(projects);
-        });
     };
     fillProject(projects){
-        const PROJECT_LENGTH = projects.length;
+        let tempArray = projects.getProject();
+        const PROJECT_LENGTH = tempArray.length;
+        
+        console.log(tempArray);
         for(let i = 0;i< PROJECT_LENGTH;i++){
-            this.fillProjectIndividual(projects[i]);
+            this.fillProjectIndividual(tempArray[i]);
         };
+        this.fillProjectAddButton(projects);
     };
 
     fillTodoList(project){
@@ -48,27 +49,39 @@ class domChangeObject{
         });
         this.sectionProjectList.appendChild(divProject);
     };
+    fillProjectAddButton(project){
+        const divAddButton = document.createElement('div');
+        const imgAddButton = document.createElement('img');
+        divAddButton.classList.add('divInputCreate','divProjectList');
+        imgAddButton.src = smallAddIcon;
+        imgAddButton.classList.add('divAddSmall');
+        divAddButton.appendChild(imgAddButton);
+        divAddButton.addEventListener("click",(e)=>{
+            this.projectAddButton_removeDiv();
+            this.inputProjectIndividual_createDiv(project);
+        });
+        this.sectionProjectList.appendChild(divAddButton);
+    };
+    projectAddButton_removeDiv(){
+        this.sectionProjectList.removeChild(this.sectionProjectList.lastChild);
+    };
     inputProjectIndividual_createDiv(project){
+        console.log(project);
         const divCreate = document.createElement('div');
         const inputCreate = document.createElement('input');
         const submitCreate = document.createElement('button');
         inputCreate.classList.add('inputCreate');
         divCreate.classList.add('divInputCreate','divProjectList');
         submitCreate.textContent = 'CREATE';
-        this.buttonCreate.disabled = true;
         divCreate.appendChild(inputCreate);
         submitCreate.addEventListener("click",(e)=>{
             project.createProject(inputCreate.value); 
             this.resetProjectList();
-            this.fillProject(project.getProject());
-            this.inputProjectIndividual_deleteDiv();
+            this.fillProject(project);
         });
         divCreate.appendChild(submitCreate);
         this.sectionProjectList.appendChild(divCreate);
         
-    };
-    inputProjectIndividual_deleteDiv(){
-        this.buttonCreate.disabled = false;
     };
     changeHeader(project){
         this.sectionProjectHeader.textContent = project.projectName;
