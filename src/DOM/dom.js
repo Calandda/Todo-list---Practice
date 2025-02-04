@@ -97,6 +97,7 @@ class domChangeObject{
         this.buttonDelete.dataset.id = project.id;
     };
     fillTodoListIndividual(project){
+        const divId = document.createElement('p');
         const divTodo = document.createElement('div');
         const divTitle = document.createElement('p');
         const divDescription = document.createElement('p');
@@ -105,6 +106,7 @@ class domChangeObject{
         const divNotes = document.createElement('p');
         const divCheck = document.createElement('p');
 
+        divId.textContent = project.getId();
         divTitle.textContent = project.getTitle();
         divDescription.textContent = project.getDescription();
         divDate.textContent = project.getDueDate();
@@ -113,6 +115,7 @@ class domChangeObject{
         divCheck.textContent = project.getCheck();
         divTodo.classList.add('divTodoList','bgColorDarkGrayHalfOpacity');
 
+        divTodo.appendChild(divId);
         divTodo.appendChild(divTitle);
         divTodo.appendChild(divDescription);
         divTodo.appendChild(divDate);

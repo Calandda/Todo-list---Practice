@@ -1,4 +1,5 @@
-function projectObject(title,projectName,description,dueDate,priority,notes,check){
+function projectObject(title,projectName,description,dueDate,priority,notes,check,currentId){
+    currentId = currentId;
     title = title;
     projectName = projectName;
     description = description;
@@ -56,9 +57,6 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
             check = true;
         }
     };
-    function setId(temp){
-        id = temp;
-    };
     return{
     getTitle,
     getProjectName,
@@ -74,7 +72,7 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
     setDueDate,
     setPriority,
     setNotes,
-    setCheck
+    setCheck,
     };
 }
 class saveDataObject{
@@ -93,16 +91,19 @@ class saveDataObject{
         let tempObject = {};
         tempObject.projectName = projectName;
         tempObject.id = this.currentId++;
+        tempObject.todoId = 0;
         
         tempObject.projectTodoList = [];
         this.projects.push(tempObject);
     };
     createProjectList(title,projectName,description,dueDate,priority,notes,check){
         const PROJECT_LENGTH = this.projects.length;
-        const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check); 
+        //const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check);
         for(let i = 0; i < PROJECT_LENGTH;i++){
             if(this.projects[i].projectName === projectName){
+                const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check,this.projects[i].todoId);
                 this.projects[i].projectTodoList.push(tempObject);
+                this.projects[i].todoId++;
             };
         }
     };
@@ -158,19 +159,21 @@ class saveDataObject{
     deleteProject(id){
         this.projects = this.projects.filter(this.filterRemoveProject,id);
     };
-    deleteProjectList(title,projectName){
-        let tempArray = [title,projectName];
+    deleteProjectList(projectId,todoId){
         const PROJECT_LENGTH = this.projects.length;
         let currentProject;
         let TODO_LENGTH;
         for(let i = 0; i < PROJECT_LENGTH;i++){
-            if(this.projects[i].projectName === projectName){
+            if(this.projects[i].id === projectId){
                 TODO_LENGTH = this.projects[i].projectTodoList.length;
                 currentProject = this.projects[i].projectTodoList;
+                //console.log(this.projects[i]);
                 for(let j = 0; j < TODO_LENGTH;j++){
-                    if(currentProject[j].getTitle() === title){
+                    console.log(currentProject[j].getId() === todoId);
+                    if(currentProject[j].getId() == todoId){
                         currentProject.splice(j,1);
-                    }
+                        return 0;
+                    };
                 };
             };
         };
