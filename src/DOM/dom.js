@@ -6,9 +6,18 @@ class domChangeObject{
         this.sectionProjectList = document.querySelector('.sectionProject');
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
+        this.buttonDelete = document.querySelector('.buttonDelete');
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects.getProject()[0]);
+        this.buttonDelete.addEventListener("click",(e)=>{
+            projects.deleteProject(e.target.dataset.projectName);
+            this.resetProjectList()
+            this.resetTodoList();
+            this.changeHeader(projects.getProject()[0]);
+            this.fillProject(projects);
+            this.fillTodoList(projects.getProject()[0]);
+        });
     };
     fillProject(projects){
         let tempArray = projects.getProject();
@@ -85,6 +94,7 @@ class domChangeObject{
     };
     changeHeader(project){
         this.sectionProjectHeader.textContent = project.projectName;
+        this.buttonDelete.dataset.projectName = project.projectName;
     };
     fillTodoListIndividual(project){
         const divTodo = document.createElement('div');
