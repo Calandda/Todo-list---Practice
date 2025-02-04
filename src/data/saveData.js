@@ -28,6 +28,9 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
     function getCheck(){
         return(check);
     };
+    function getId(){
+        return(currentId);
+    };
     function setTitle(temp){
         title = temp;
     };
@@ -53,6 +56,9 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
             check = true;
         }
     };
+    function setId(temp){
+        id = temp;
+    };
     return{
     getTitle,
     getProjectName,
@@ -61,6 +67,7 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
     getPriority,
     getNotes,
     getCheck,
+    getId,
     setTitle,
     setProjectName,
     setDescription,
@@ -73,6 +80,7 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
 class saveDataObject{
     projects = [];
     projectList = [];
+    currentId = 0;
 
     constructor(){
         this.createProject('default Project');
@@ -84,6 +92,8 @@ class saveDataObject{
     createProject(projectName){
         let tempObject = {};
         tempObject.projectName = projectName;
+        tempObject.id = this.currentId++;
+        
         tempObject.projectTodoList = [];
         this.projects.push(tempObject);
     };
@@ -145,8 +155,8 @@ class saveDataObject{
         };
         return(tempArray);
     }
-    deleteProject(projectName){
-        this.projects = this.projects.filter(this.filterRemoveProject,projectName);
+    deleteProject(id){
+        this.projects = this.projects.filter(this.filterRemoveProject,id);
     };
     deleteProjectList(title,projectName){
         let tempArray = [title,projectName];
@@ -166,7 +176,7 @@ class saveDataObject{
         };
     };
     filterRemoveProject(project){
-        return(project.projectName != this);
+        return(project.id != this);
     };
     filterChooseProject(project){
         return(project.projectName == this);

@@ -11,7 +11,7 @@ class domChangeObject{
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects.getProject()[0]);
         this.buttonDelete.addEventListener("click",(e)=>{
-            projects.deleteProject(e.target.dataset.projectName);
+            projects.deleteProject(e.target.dataset.id);
             this.resetProjectList()
             this.resetTodoList();
             this.changeHeader(projects.getProject()[0]);
@@ -94,7 +94,7 @@ class domChangeObject{
     };
     changeHeader(project){
         this.sectionProjectHeader.textContent = project.projectName;
-        this.buttonDelete.dataset.projectName = project.projectName;
+        this.buttonDelete.dataset.id = project.id;
     };
     fillTodoListIndividual(project){
         const divTodo = document.createElement('div');
