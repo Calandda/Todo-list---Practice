@@ -13,16 +13,21 @@
 .bgColorBrown{
     background-color: hsla(59, 100%, 50%, 0.2);
 }
+.fontHeavy{
+    font-weight: 700;
+}
+
 body{
     margin: 0;
     padding: 0;
+    height: 100vh;
     display: flex;
+    flex-direction: row;
 }
 aside{
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    flex-basis: 400px
+    flex-basis: 500px;
 }
 .sectionCreateProject{
     padding: 10px 30px 10px 30px;
@@ -48,7 +53,7 @@ nav{
     display: flex;
     justify-content: center;
     padding: 30px;
-    flex-basis: 20%;
+    flex-basis: 200px;
 }
 nav > img{
     flex-basis: 160px;
@@ -87,7 +92,7 @@ main{
 .headerProjectTitle{
     display: flex;
     justify-content: space-between;
-};
+}
 h1{
     font-weight: 700;
     font-size: 48px;
@@ -103,8 +108,8 @@ h1{
 }
 
 .divTodoList{
-    flex-basis: 20%;
-    height: 300px;
+    flex-basis: 400px;
+    height: 400px;
     padding: 10px 20px;
 }
 .divTodoList:hover{
@@ -117,7 +122,7 @@ h1{
     width: 60px;
     justify-self: center;
     align-self: center;
-};
+}
 .divInputCreate{
     display: flex;
     justify-content: center;
@@ -127,6 +132,34 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-};
-.divAddSmall{
-};
+}
+.imgAdd{
+}
+.dialogEdit{
+    border: none;
+}
+.divDialogEdit{
+    display: grid;
+    grid-template-columns: 2fr 4fr 1fr;
+    grid-gap: 20px;
+    grid-template-areas: 
+    "pNew . buttonDialogClose"
+    "pTitle inputTitle inputTitle";
+}
+
+.pNew{
+    grid-area: pNew;
+}
+.buttonDialogClose{
+    grid-area: buttonDialogClose;
+}
+.pTitle{
+    grid-area: pTitle;
+}
+
+.buttonDialogClose{
+    height: 30px;
+    width: 30px;
+    justify-self: center;
+    align-self: center;
+}

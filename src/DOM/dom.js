@@ -3,6 +3,7 @@ import smallAddIcon from "../images/addSmall.png";
 
 class domChangeObject{
     constructor(projects){
+        this.mainBody = document.querySelector('body');
         this.sectionProjectList = document.querySelector('.sectionProject');
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
@@ -35,7 +36,7 @@ class domChangeObject{
         for(let i = 0;i < TODO_LENGTH;i++){
             this.fillTodoListIndividual(project.projectTodoList[i]);
         };
-        this.fillTodoListAddButton();
+        this.fillTodoListAddButton(project);
     };
     fillProjectIndividual(project){
         const divProject = document.createElement('div');
@@ -94,6 +95,7 @@ class domChangeObject{
     };
     changeHeader(project){
         this.sectionProjectHeader.textContent = project.projectName;
+        this.sectionProjectHeader.dataset.id = project.id;
         this.buttonDelete.dataset.id = project.id;
     };
     fillTodoListIndividual(project){
@@ -122,15 +124,31 @@ class domChangeObject{
         divTodo.appendChild(divPriority);
         divTodo.appendChild(divNotes);
         divTodo.appendChild(divCheck);
+        divTodo.addEventListener("click",(e)=>{
+            console.log('test');
+        });
         this.sectionTodoList.appendChild(divTodo);
     };
-    fillTodoListAddButton(){
+    fillTodoListAddButton(project){
         const divAdd = document.createElement('div');
         const imgAdd = document.createElement('img');
         divAdd.classList.add('divAdd','divTodoList','bgColorDarkGrayHalfOpacity');
         imgAdd.src = addIcon;
+        imgAdd.classList.add('imgAdd');
         divAdd.appendChild(imgAdd);
+        divAdd.dataset.id = project.id;
+        divAdd.addEventListener("click", (e)=>{
+            this.openEdit();
+        });
         this.sectionTodoList.appendChild(divAdd);
+    };
+    openEdit(){
+        const dialog = document.querySelector('dialog');
+        const dialogButtonClose = document.querySelector('.buttonDialogClose');
+        dialog.showModal();
+        dialogButtonClose.addEventListener("click",(e)=>{
+            dialog.close();
+        });
     };
     resetProjectList(){
         while(this.sectionProjectList.firstChild){

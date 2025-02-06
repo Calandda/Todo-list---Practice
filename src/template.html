@@ -16,7 +16,7 @@
         </aside>
         <main class = 'bgColorLightGray'>
             <header class = 'headerProjectTitle'>
-                <h1>PLACEHOLDER</h1>
+                <h1 class = 'divModal'>PLACEHOLDER</h1>
                 <button class = 'buttonDelete'>
                     DELETE
                 </button>
@@ -25,5 +25,16 @@
                 
             </section>
         </main>
+        <dialog class = "dialogEdit">
+            <div class = "divDialogEdit">
+                <p class="pNew fontHeavy">ENTER NEW TO-DO LIST ITEM</p>
+                <button class = "buttonDialogClose">X</button>
+                <p class = 'pTitle fontHeavy'>TITLE:</p><input class = 'inputTitle' type="text" placeholder="INPUT TITLE">
+                <p class = 'pDescription fontHeavy'>DESCRIPTION:</p><input class = 'inputDescription' type="textarea" placeholder="INPUT DESCRIPTION">
+                <p class = 'pDate fontHeavy'>DUE DATE:</p><input class = 'inputDate' type="text" placeholder="INPUT DATE">
+                <p class = 'pPriority fontHeavy'>PRIORTY:</p><input class = 'inputPriority' type='number'>
+                <p class = 'pNotes fontHeavy'>NOTES:</p><input class = "inputNotes" type="textarea" placeholder ="notes">
+            </div>
+        </dialog>
     </body>
 </html>

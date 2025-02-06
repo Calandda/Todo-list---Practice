@@ -15,7 +15,7 @@ saveData.createProjectList('Project2 Test3', 'Daily', 'Project3 Description', '2
 //console.log(saveData.deleteProject(1));
 //console.log(saveData.getProject());
 //console.log(saveData.getProjectList('Daily'));
-console.log(saveData.deleteProjectList(2, 1));
+//console.log(saveData.deleteProjectList(2, 1));
 //console.log(saveData.getProjectList('Daily'));
 //title,description,dueDate,priority,notes,check
 
