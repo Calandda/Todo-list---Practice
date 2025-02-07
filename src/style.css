@@ -141,10 +141,17 @@ h1{
 .divDialogEdit{
     display: grid;
     grid-template-columns: 2fr 4fr 1fr;
-    grid-gap: 20px;
+
     grid-template-areas: 
-    "pNew . buttonDialogClose"
-    "pTitle inputTitle inputTitle";
+    "pNew pNew buttonDialogClose"
+    "pTitle inputTitle inputTitle"
+    "pDescription . ."
+    "inputDescription inputDescription inputDescription"
+    "pDate inputDate inputDate"
+    "pPriority inputPriority inputPriority"
+    "pNotes . ."
+    "inputNotes inputNotes inputNotes"
+    ". buttonSubmit .";
 }
 
 .pNew{
@@ -155,6 +162,39 @@ h1{
 }
 .pTitle{
     grid-area: pTitle;
+}
+.inputTitle{
+    grid-area: inputTitle;
+}
+.pDescription{
+    grid-area: pDescription;
+}
+.inputDescription{
+    grid-area: inputDescription;
+    height: 60px;
+    resize: none;
+}
+.pDate{
+    grid-area: pDate;
+}
+.inputDate{
+    grid-area: inputDate;
+}
+.pPriority{
+    grid-area: pPriority;
+}
+.inputPriority{
+    grid-area: inputPriority;
+}
+.pNotes{
+    grid-area: pNotes;
+}
+.inputNotes{
+    grid-area: inputNotes;
+}
+.buttonSubmit{
+    grid-area: buttonSubmit;
+    width: 200px;
 }
 
 .buttonDialogClose{
