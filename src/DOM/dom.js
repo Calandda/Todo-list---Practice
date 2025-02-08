@@ -138,15 +138,29 @@ class domChangeObject{
         divAdd.appendChild(imgAdd);
         divAdd.dataset.id = project.id;
         divAdd.addEventListener("click", (e)=>{
-            this.openEdit();
+            this.openAdd();
         });
         this.sectionTodoList.appendChild(divAdd);
     };
-    openEdit(){
+    openAdd(){
         const dialog = document.querySelector('dialog');
         const dialogButtonClose = document.querySelector('.buttonDialogClose');
+        const form = document.querySelector('.divDialogEdit');
+        const buttonSubmit = document.querySelector('.buttonSubmit');
         dialog.showModal();
         dialogButtonClose.addEventListener("click",(e)=>{
+            e.preventDefault();
+            dialog.close();
+        });
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            const formUpdate = document.querySelector('form');
+            const formData = new FormData(formUpdate,buttonSubmit);
+            form.reset();
+            console.log(formData);
+            for(const [key,value] of formData.entries()){
+                console.log(key + value);
+            };
             dialog.close();
         });
     };

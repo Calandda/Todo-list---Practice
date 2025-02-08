@@ -138,6 +138,7 @@ h1{
 .dialogEdit{
     border: none;
 }
+
 .divDialogEdit{
     display: grid;
     grid-template-columns: 2fr 4fr 1fr;

@@ -30,12 +30,12 @@
                 <form class = "divDialogEdit">
                     <p class="pNew fontHeavy">ENTER NEW TO-DO LIST ITEM</p>
                     <button class = "buttonDialogClose">X</button>
-                    <p class = 'pTitle fontHeavy'>TITLE:</p><input class = 'inputTitle' type="text" placeholder="INPUT TITLE">
-                    <p class = 'pDescription fontHeavy'>DESCRIPTION:</p><textarea class = 'inputDescription' placeholder="INPUT DESCRIPTION" rows = 3 cols 30></textarea>
-                    <p class = 'pDate fontHeavy'>DUE DATE:</p><input class = 'inputDate' type="number" placeholder="INPUT DATE">
-                    <p class = 'pPriority fontHeavy'>PRIORTY:</p><input class = 'inputPriority' type='number'>
-                    <p class = 'pNotes fontHeavy'>NOTES:</p><input class = "inputNotes" type="textarea" placeholder ="notes">
-                    <button class = 'buttonSubmit' type = "submit">SUBMIT</button>
+                    <label class = 'pTitle fontHeavy' for="inputTitle">TITLE:</label><input name="inputTitle" class = 'inputTitle' type="text" placeholder="INPUT TITLE">
+                    <label class = 'pDescription fontHeavy' for="inputDescription">DESCRIPTION:</label><textarea name="inputDescription" class = 'inputDescription' placeholder="INPUT DESCRIPTION" rows = 3 cols 30></textarea>
+                    <label class = 'pDate fontHeavy' for="inputDate">DUE DATE:</label><input name="inputDate" class = 'inputDate' type="number" placeholder="INPUT DATE">
+                    <label class = 'pPriority fontHeavy' for="inputPriority">PRIORTY:</label><input name = "inputPriority" class = 'inputPriority' type='number'>
+                    <label class = 'pNotes fontHeavy' for="inputNotes">NOTES:</label><input name = "inputNotes" class = "inputNotes" type="textarea" placeholder ="notes">
+                    <button class = 'buttonSubmit'>SUBMIT</button>
                 </form>
             </div>
         </dialog>
