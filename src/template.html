@@ -28,8 +28,11 @@
         <dialog class = "dialogEdit">
             <div>
                 <form class = "divDialogEdit">
-                    <p class="pNew fontHeavy">ENTER NEW TO-DO LIST ITEM</p>
-                    <button class = "buttonDialogClose">X</button>
+                    <div class = 'divDialogHeader bgColorDarkGray'>
+                        <p class="pNew fontHeavy">ENTER NEW TO-DO LIST ITEM</p>
+                        <button class = "buttonDialogClose fontHeavy">X</button>
+                    </div>
+                    
                     <label class = 'pTitle fontHeavy' for="inputTitle">TITLE:</label><input name="inputTitle" class = 'inputTitle' type="text" placeholder="INPUT TITLE">
                     <label class = 'pDescription fontHeavy' for="inputDescription">DESCRIPTION:</label><textarea name="inputDescription" class = 'inputDescription' placeholder="INPUT DESCRIPTION" rows = 3 cols 30></textarea>
                     <label class = 'pDate fontHeavy' for="inputDate">DUE DATE:</label><input name="inputDate" class = 'inputDate' type="number" placeholder="INPUT DATE">

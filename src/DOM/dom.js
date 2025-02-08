@@ -41,7 +41,9 @@ class domChangeObject{
             );
             this.form.reset();
             this.resetProjectList();
+            this.resetTodoList();
             this.fillProject(projects);
+            this.fillTodoList(projects, projectId);
             dialog.close();
         });
     };

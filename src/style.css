@@ -137,14 +137,17 @@ h1{
 }
 .dialogEdit{
     border: none;
+    border-radius: 1% 1% 1% 1%;
+    padding:0;
 }
 
 .divDialogEdit{
+    margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: 2fr 4fr 1fr;
-
     grid-template-areas: 
-    "pNew pNew buttonDialogClose"
+    "header header header"
     "pTitle inputTitle inputTitle"
     "pDescription . ."
     "inputDescription inputDescription inputDescription"
@@ -154,7 +157,16 @@ h1{
     "inputNotes inputNotes inputNotes"
     ". buttonSubmit .";
 }
-
+.divDialogHeader{
+    padding: 10px 20px 10px 20px;
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.divDialogHeader{
+    font-size: 18px;
+}
 .pNew{
     grid-area: pNew;
 }
