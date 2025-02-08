@@ -8,37 +8,61 @@ class domChangeObject{
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
         this.buttonDelete = document.querySelector('.buttonDelete');
+        this.form = document.querySelector('.divDialogEdit');
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
-        this.fillTodoList(projects.getProject()[0]);
+        this.fillTodoList(projects,0);
         this.buttonDelete.addEventListener("click",(e)=>{
             projects.deleteProject(e.target.dataset.id);
-            this.resetProjectList()
+            this.resetProjectList();
             this.resetTodoList();
             this.changeHeader(projects.getProject()[0]);
             this.fillProject(projects);
-            this.fillTodoList(projects.getProject()[0]);
+            this.fillTodoList(projects,0);
+        });
+        this.form.addEventListener("submit",(e)=>{
+            const dialog = document.querySelector('dialog');
+            const projectId = document.querySelector('h1').dataset.id;
+            const buttonSubmit = document.querySelector('.buttonSubmit');
+            e.preventDefault();
+            console.log(projectId);
+            const formUpdate = document.querySelector('form');
+            const formData = new FormData(formUpdate,buttonSubmit);
+            console.log(formData);
+            projects.createProjectList(
+                formData.get('inputTitle'),
+                '',
+                formData.get('inputDescription'),
+                formData.get('inputDate'),
+                formData.get('inputPriority'),
+                formData.get('inputNotes'),
+                false,
+                parseInt(projectId)
+            );
+            this.form.reset();
+            this.resetProjectList();
+            this.fillProject(projects);
+            dialog.close();
         });
     };
     fillProject(projects){
         let tempArray = projects.getProject();
         const PROJECT_LENGTH = tempArray.length;
-        
-        console.log(tempArray);
         for(let i = 0;i< PROJECT_LENGTH;i++){
-            this.fillProjectIndividual(tempArray[i]);
+            this.fillProjectIndividual(projects,i);
         };
         this.fillProjectAddButton(projects);
     };
 
-    fillTodoList(project){
-        const TODO_LENGTH = project.projectTodoList.length;
+    fillTodoList(project,index){
+        const TODO_LENGTH = project.getProject()[index].projectTodoList.length;
         for(let i = 0;i < TODO_LENGTH;i++){
-            this.fillTodoListIndividual(project.projectTodoList[i]);
+            this.fillTodoListIndividual(project.getProject()[index].projectTodoList[i]);
         };
         this.fillTodoListAddButton(project);
     };
-    fillProjectIndividual(project){
+    fillProjectIndividual(projects,index){
+        const project = projects.getProject()[index];
         const divProject = document.createElement('div');
         const pProjectTitle = document.createElement('p');
         const pTodoLength = document.createElement('p');
@@ -55,7 +79,7 @@ class domChangeObject{
         divProject.addEventListener("click", (e)=>{
             this.resetTodoList();
             this.changeHeader(project);
-            this.fillTodoList(project);
+            this.fillTodoList(projects,index);
         });
         this.sectionProjectList.appendChild(divProject);
     };
@@ -76,7 +100,6 @@ class domChangeObject{
         this.sectionProjectList.removeChild(this.sectionProjectList.lastChild);
     };
     inputProjectIndividual_createDiv(project){
-        console.log(project);
         const divCreate = document.createElement('div');
         const inputCreate = document.createElement('input');
         const submitCreate = document.createElement('button');
@@ -138,29 +161,18 @@ class domChangeObject{
         divAdd.appendChild(imgAdd);
         divAdd.dataset.id = project.id;
         divAdd.addEventListener("click", (e)=>{
-            this.openAdd();
+            this.openAdd(project);
         });
         this.sectionTodoList.appendChild(divAdd);
     };
-    openAdd(){
+   
+    openAdd(projects){
         const dialog = document.querySelector('dialog');
         const dialogButtonClose = document.querySelector('.buttonDialogClose');
-        const form = document.querySelector('.divDialogEdit');
-        const buttonSubmit = document.querySelector('.buttonSubmit');
+        
         dialog.showModal();
         dialogButtonClose.addEventListener("click",(e)=>{
             e.preventDefault();
-            dialog.close();
-        });
-        form.addEventListener("submit",(e)=>{
-            e.preventDefault();
-            const formUpdate = document.querySelector('form');
-            const formData = new FormData(formUpdate,buttonSubmit);
-            form.reset();
-            console.log(formData);
-            for(const [key,value] of formData.entries()){
-                console.log(key + value);
-            };
             dialog.close();
         });
     };

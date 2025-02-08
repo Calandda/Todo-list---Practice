@@ -96,11 +96,12 @@ class saveDataObject{
         tempObject.projectTodoList = [];
         this.projects.push(tempObject);
     };
-    createProjectList(title,projectName,description,dueDate,priority,notes,check){
+    createProjectList(title,projectName,description,dueDate,priority,notes,check,projectId){
         const PROJECT_LENGTH = this.projects.length;
         //const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check);
         for(let i = 0; i < PROJECT_LENGTH;i++){
-            if(this.projects[i].projectName === projectName){
+            console.log('test');
+            if(this.projects[i].id === projectId){
                 const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check,this.projects[i].todoId);
                 this.projects[i].projectTodoList.push(tempObject);
                 this.projects[i].todoId++;
