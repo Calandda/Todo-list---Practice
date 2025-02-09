@@ -8,7 +8,7 @@ class domChangeObject{
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
         this.buttonDelete = document.querySelector('.buttonDelete');
-        this.form = document.querySelector('.divDialogEdit');
+        this.form = document.querySelector('.divDialogAdd');
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects,0);
@@ -21,7 +21,7 @@ class domChangeObject{
             this.fillTodoList(projects,0);
         });
         this.form.addEventListener("submit",(e)=>{
-            const dialog = document.querySelector('dialog');
+            const dialog = document.querySelector('dialogAdd');
             const projectId = document.querySelector('h1').dataset.id;
             const buttonSubmit = document.querySelector('.buttonSubmit');
             e.preventDefault();
@@ -126,29 +126,38 @@ class domChangeObject{
     fillTodoListIndividual(project){
         //const divId = document.createElement('p');
         const divTodo = document.createElement('div');
-        const divTitle = document.createElement('p');
-        const divDescription = document.createElement('p');
-        const divDate = document.createElement('p');
-        const divPriority = document.createElement('p');
-        const divNotes = document.createElement('p');
-        const divCheck = document.createElement('p');
+        const divTitle = document.createElement('div');
+        const pTitle = document.createElement('p');
+        const pDescription = document.createElement('p');
+        const pDate = document.createElement('p');
+        const pPriority = document.createElement('p');
+        const pNotes = document.createElement('p');
+        const pCheck = document.createElement('p');
 
         //divId.textContent = project.getId();
-        divTitle.textContent = project.getTitle();
-        divDescription.textContent = project.getDescription();
-        divDate.textContent = project.getDueDate();
-        divPriority.textContent = project.getPriority();
-        divNotes.textContent = project.getNotes();
-        divCheck.textContent = project.getCheck();
+        pTitle.textContent = project.getTitle();
+        pDescription.textContent = project.getDescription();
+        pDate.textContent = project.getDueDate();
+        pPriority.textContent = project.getPriority();
+        pNotes.textContent = project.getNotes();
+        pCheck.textContent = project.getCheck();
         divTodo.classList.add('divTodoList','bgColorDarkGrayHalfOpacity');
 
         //divTodo.appendChild(divId);
+        divTitle.classList.add('divTodoTitle','bgColorDarkGray');
+        pTitle.classList.add('pTitle','fontHeavy');
+        pPriority.classList.add('pPriority');
+        pCheck.classList.add('pCheck');
+        pDate.classList.add('pDate');
+        pDescription.classList.add('pDescription');
+        pNotes.classList.add('pNotes');
+        divTitle.appendChild(pTitle);
         divTodo.appendChild(divTitle);
-        divTodo.appendChild(divDescription);
-        divTodo.appendChild(divDate);
-        divTodo.appendChild(divPriority);
-        divTodo.appendChild(divNotes);
-        divTodo.appendChild(divCheck);
+        divTodo.appendChild(pDescription);
+        divTodo.appendChild(pDate);
+        divTitle.appendChild(pPriority);
+        divTodo.appendChild(pNotes);
+        divTitle.appendChild(pCheck);
         divTodo.addEventListener("click",(e)=>{
             console.log('test');
         });
@@ -169,9 +178,8 @@ class domChangeObject{
     };
    
     openAdd(projects){
-        const dialog = document.querySelector('dialog');
+        const dialog = document.querySelector('#dialogAdd');
         const dialogButtonClose = document.querySelector('.buttonDialogClose');
-        
         dialog.showModal();
         dialogButtonClose.addEventListener("click",(e)=>{
             e.preventDefault();
