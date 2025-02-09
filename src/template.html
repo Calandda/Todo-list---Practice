@@ -17,9 +17,14 @@
         <main class = 'bgColorLightGray'>
             <header class = 'headerProjectTitle'>
                 <h1>PLACEHOLDER</h1>
-                <button class = 'buttonDelete'>
-                    DELETE
-                </button>
+                <div class = 'divButtonProject'>
+                    <button class = 'buttonEditProjectTitle buttonProject fontHeavy'>
+                        EDIT NAME
+                    </button>
+                    <button class = 'buttonDelete buttonProject fontHeavy'>
+                        DELETE
+                    </button>
+                </div>
             </header>
             <section class = 'sectionTodo'>
                 
@@ -42,7 +47,21 @@
                 </form>
             </div>
         </dialog>
-        <dialog id = 'dialogShow'>
+        <dialog id = 'dialogEdit' class = 'dialogAdd'>
+            <form class = "formDialogEdit">
+                <div class = 'bgColorDarkGray'>
+                    <p class = 'fontHeavy'>PLACEHOLDER</p>
+                    <button class = 'buttonDialogEditClose fontHeavy'>X</button>
+                </div>
+                <label for = 'inputEditTitle'>TITLE:</label><input name = 'inputEditTitle' type="text">
+                <label for = 'inputEditProjectTitle'>PROJECT:</label><select name = "inputEditProjectTitle"></select>
+                <label for = 'inputEditDescription'>DESCRIPTION:</label><textarea name = "inputEditDescription"></textarea>
+                <label for = 'inputEditDate'>Due Date:</label><input name = 'inputEditDate' type = 'number'>
+                <label for = 'inputEditPriority'>Priority:</label><input name = 'inputEditPriority' type = 'number'>
+                <label for = 'inputEditNotes'>Notes:</label><textarea name = 'inputEditNotes'></textarea>
+                <button class = 'buttonEditSubmit'>SUBMIT EDIT</button>
+                <!-- title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check-->
+            </form>
         </dialog>
     </body>
 </html>

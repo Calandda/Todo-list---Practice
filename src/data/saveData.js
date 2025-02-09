@@ -100,7 +100,6 @@ class saveDataObject{
         const PROJECT_LENGTH = this.projects.length;
         //const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check);
         for(let i = 0; i < PROJECT_LENGTH;i++){
-            console.log('test');
             if(this.projects[i].id === projectId){
                 const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check,this.projects[i].todoId);
                 this.projects[i].projectTodoList.push(tempObject);

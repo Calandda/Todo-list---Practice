@@ -8,7 +8,8 @@ class domChangeObject{
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
         this.buttonDelete = document.querySelector('.buttonDelete');
-        this.form = document.querySelector('.divDialogAdd');
+        this.formAdd = document.querySelector('.divDialogAdd');
+        this.formEdit = document.querySelector('.formDialogEdit');
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects,0);
@@ -20,7 +21,8 @@ class domChangeObject{
             this.fillProject(projects);
             this.fillTodoList(projects,0);
         });
-        this.form.addEventListener("submit",(e)=>{
+
+        this.formAdd.addEventListener("submit",(e)=>{
             const dialog = document.querySelector('dialogAdd');
             const projectId = document.querySelector('h1').dataset.id;
             const buttonSubmit = document.querySelector('.buttonSubmit');
@@ -45,6 +47,8 @@ class domChangeObject{
             this.fillProject(projects);
             this.fillTodoList(projects, projectId);
             dialog.close();
+        });
+        this.formEdit.addEventListener("submit",(e)=>{
         });
     };
     fillProject(projects){
@@ -159,7 +163,7 @@ class domChangeObject{
         divTodo.appendChild(pNotes);
         divTitle.appendChild(pCheck);
         divTodo.addEventListener("click",(e)=>{
-            console.log('test');
+            this.openEdit();
         });
         this.sectionTodoList.appendChild(divTodo);
     };
@@ -182,6 +186,15 @@ class domChangeObject{
         const dialogButtonClose = document.querySelector('.buttonDialogClose');
         dialog.showModal();
         dialogButtonClose.addEventListener("click",(e)=>{
+            e.preventDefault();
+            dialog.close();
+        });
+    };
+    openEdit(){
+        const dialog = document.querySelector('#dialogEdit');
+        const dialogButtonClose = document.querySelector('.buttonDialogEditClose');
+        dialog.showModal();
+        dialogButtonClose.addEventListener('click',(e)=>{
             e.preventDefault();
             dialog.close();
         });

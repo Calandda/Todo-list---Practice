@@ -97,7 +97,17 @@ h1{
     font-weight: 700;
     font-size: 48px;
 }
-
+.divButtonProject{
+    align-content: center;
+}
+.buttonProject{
+    border-radius: 0;
+    border: 0px;
+    height: 40px;
+    width: 120px;
+    justify-self: center;
+    align-self: center;
+}
 .sectionTodo{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -126,16 +136,6 @@ h1{
     grid-template-areas:
     "pTitle pTitle pPriority pCheck";
     grid-area: divTitle;
-}
-
-
-.buttonDelete{
-    border-radius: 0;
-    border: 0px;
-    height: 30px;
-    width: 60px;
-    justify-self: center;
-    align-self: center;
 }
 .divInputCreate{
     display: flex;
