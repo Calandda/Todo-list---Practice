@@ -7,6 +7,7 @@ class domChangeObject{
         this.sectionProjectList = document.querySelector('.sectionProject');
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
+        this.buttonEditProjectTitle = document.querySelector('.buttonEditProjectTitle');
         this.buttonDelete = document.querySelector('.buttonDelete');
         this.formAdd = document.querySelector('.divDialogAdd');
         this.formEdit = document.querySelector('.formDialogEdit');
@@ -23,7 +24,7 @@ class domChangeObject{
         });
 
         this.formAdd.addEventListener("submit",(e)=>{
-            const dialog = document.querySelector('dialogAdd');
+            const dialog = document.querySelector('#dialogAdd');
             const projectId = document.querySelector('h1').dataset.id;
             const buttonSubmit = document.querySelector('.buttonSubmit');
             e.preventDefault();
@@ -41,7 +42,7 @@ class domChangeObject{
                 false,
                 parseInt(projectId)
             );
-            this.form.reset();
+            this.formAdd.reset();
             this.resetProjectList();
             this.resetTodoList();
             this.fillProject(projects);
@@ -125,6 +126,7 @@ class domChangeObject{
     changeHeader(project){
         this.sectionProjectHeader.textContent = project.projectName;
         this.sectionProjectHeader.dataset.id = project.id;
+        this.buttonEditProjectTitle.dataset.id = project.id;
         this.buttonDelete.dataset.id = project.id;
     };
     fillTodoListIndividual(project){
@@ -163,7 +165,7 @@ class domChangeObject{
         divTodo.appendChild(pNotes);
         divTitle.appendChild(pCheck);
         divTodo.addEventListener("click",(e)=>{
-            this.openEdit();
+            this.openEdit(project);
         });
         this.sectionTodoList.appendChild(divTodo);
     };
@@ -190,14 +192,18 @@ class domChangeObject{
             dialog.close();
         });
     };
-    openEdit(){
+    openEdit(project){
         const dialog = document.querySelector('#dialogEdit');
         const dialogButtonClose = document.querySelector('.buttonDialogEditClose');
         dialog.showModal();
+        this.fillEditModal(project.getTitle());
         dialogButtonClose.addEventListener('click',(e)=>{
             e.preventDefault();
             dialog.close();
         });
+    };
+    fillEditModal(projects){
+        console.log(projects);
     };
     resetProjectList(){
         while(this.sectionProjectList.firstChild){
