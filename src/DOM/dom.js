@@ -50,6 +50,9 @@ class domChangeObject{
             dialog.close();
         });
         this.formEdit.addEventListener("submit",(e)=>{
+            const dialog = document.querySelector('#dialogEdit');
+            e.preventDefault();
+            dialog.close();
         });
     };
     fillProject(projects){
@@ -210,8 +213,12 @@ class domChangeObject{
     };
     fillEditModal(projects,PROJECT_INDEX,TODO_INDEX){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
+        const submitButton = document.querySelector('.buttonEditSubmit');
+        submitButton.dataset.id = projects.getProject()[PROJECT_INDEX].id;
+        submitButton.dataset.todoId = project.getId();
         const pMainTodoTitle = document.querySelector('.pMainTodoTitle');
         const inputEditTitle = document.querySelector('.inputEditTitle');
+        const inputEditProjectTitle = document.querySelector('.inputEditProjectTitle');
         const inputEditDescription = document.querySelector('.inputEditDescription');
         const inputEditDate = document.querySelector('.inputEditDate');
         const inputEditPriority = document.querySelector('.inputEditPriority');
@@ -219,6 +226,7 @@ class domChangeObject{
         
         pMainTodoTitle.textContent = project.getTitle();
         inputEditTitle.value = project.getTitle();
+        
         inputEditDescription.value = project.getDescription();
         inputEditDate.value = project.getDueDate();
         inputEditPriority.value = project.getPriority();
