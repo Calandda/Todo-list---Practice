@@ -208,8 +208,21 @@ class domChangeObject{
             dialog.close();
         });
     };
-    fillEditModal(projects){
-        console.log(projects);
+    fillEditModal(projects,PROJECT_INDEX,TODO_INDEX){
+        const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
+        const pMainTodoTitle = document.querySelector('.pMainTodoTitle');
+        const inputEditTitle = document.querySelector('.inputEditTitle');
+        const inputEditDescription = document.querySelector('.inputEditDescription');
+        const inputEditDate = document.querySelector('.inputEditDate');
+        const inputEditPriority = document.querySelector('.inputEditPriority');
+        const inputEditNotes = document.querySelector('.inputEditNotes');
+        
+        pMainTodoTitle.textContent = project.getTitle();
+        inputEditTitle.value = project.getTitle();
+        inputEditDescription.value = project.getDescription();
+        inputEditDate.value = project.getDueDate();
+        inputEditPriority.value = project.getPriority();
+        inputEditNotes.value = project.getNotes();
     };
     resetProjectList(){
         while(this.sectionProjectList.firstChild){
