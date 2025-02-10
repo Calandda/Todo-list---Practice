@@ -90,8 +90,9 @@ class saveDataObject{
     createProject(projectName){
         let tempObject = {};
         tempObject.projectName = projectName;
-        tempObject.id = this.currentId++;
         tempObject.todoId = 0;
+        tempObject.id = this.currentId++;
+        
         
         tempObject.projectTodoList = [];
         this.projects.push(tempObject);
@@ -110,16 +111,16 @@ class saveDataObject{
     checkProject(){
         console.log(this.projects);
     };
-    changeProjectList(title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check){
+    changeProjectList(title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check,projectId,newProjectId,todoId){
         const PROJECT_LENGTH = this.projects.length;
         let TODO_LENGTH = 0;
         let currentProject = {};
         for(let i = 0; i < PROJECT_LENGTH;i++){
-            if(this.projects[i].projectName === projectName){
+            if(this.projects[i].id === projectId){
                 TODO_LENGTH = this.projects[i].projectTodoList.length;
                 currentProject = this.projects[i].projectTodoList;
                 for(let j = 0;j < TODO_LENGTH;j++){
-                    if(currentProject[j].getTitle() === title){
+                    if(currentProject[j].getId() === todoId){
                         currentProject[j].setTitle(newTitle);
                         currentProject[j].setProjectName(newProjectName);
                         currentProject[j].setDescription(description);

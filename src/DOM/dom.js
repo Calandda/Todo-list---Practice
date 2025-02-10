@@ -67,7 +67,7 @@ class domChangeObject{
             console.log(project);
             this.fillTodoListIndividual(project,index,i);
         };
-        this.fillTodoListAddButton(project);
+        this.fillTodoListAddButton(project,index);
     };
     fillProjectIndividual(projects,PROJECT_INDEX,TODO_INDEX){
         const project = projects.getProject()[PROJECT_INDEX];
@@ -132,6 +132,7 @@ class domChangeObject{
     };
     fillTodoListIndividual(projects,PROJECT_INDEX,TODO_INDEX){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
+        
         //const divId = document.createElement('p');
         const divTodo = document.createElement('div');
         const divTitle = document.createElement('div');
@@ -166,12 +167,15 @@ class domChangeObject{
         divTitle.appendChild(pPriority);
         divTodo.appendChild(pNotes);
         divTitle.appendChild(pCheck);
+        divTodo.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
+        divTodo.dataset.todoId = project.getId();
         divTodo.addEventListener("click",(e)=>{
-            this.openEdit(project);
+            this.openEdit(projects,PROJECT_INDEX,TODO_INDEX);
         });
         this.sectionTodoList.appendChild(divTodo);
     };
-    fillTodoListAddButton(project){
+    fillTodoListAddButton(projects,PROJECT_INDEX){
+        const project = projects.getProject()[PROJECT_INDEX];
         const divAdd = document.createElement('div');
         const imgAdd = document.createElement('img');
         divAdd.classList.add('divAdd','divTodoList','bgColorDarkGrayHalfOpacity');
@@ -194,11 +198,11 @@ class domChangeObject{
             dialog.close();
         });
     };
-    openEdit(project){
+    openEdit(projects,PROJECT_INDEX,TODO_INDEX){
         const dialog = document.querySelector('#dialogEdit');
         const dialogButtonClose = document.querySelector('.buttonDialogEditClose');
         dialog.showModal();
-        this.fillEditModal(project.getTitle());
+        this.fillEditModal(projects,PROJECT_INDEX,TODO_INDEX);
         dialogButtonClose.addEventListener('click',(e)=>{
             e.preventDefault();
             dialog.close();

@@ -230,3 +230,15 @@ h1{
     justify-self: center;
     align-self: center;
 }
+
+.formDialogEdit{
+    display: grid;
+}
+
+.formDialogEdit > textarea{
+    resize: none;
+}
+
+.divEditTitle{
+    display: grid;
+}
