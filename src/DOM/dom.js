@@ -64,12 +64,13 @@ class domChangeObject{
     fillTodoList(project,index){
         const TODO_LENGTH = project.getProject()[index].projectTodoList.length;
         for(let i = 0;i < TODO_LENGTH;i++){
-            this.fillTodoListIndividual(project.getProject()[index].projectTodoList[i]);
+            console.log(project);
+            this.fillTodoListIndividual(project,index,i);
         };
         this.fillTodoListAddButton(project);
     };
-    fillProjectIndividual(projects,index){
-        const project = projects.getProject()[index];
+    fillProjectIndividual(projects,PROJECT_INDEX,TODO_INDEX){
+        const project = projects.getProject()[PROJECT_INDEX];
         const divProject = document.createElement('div');
         const pProjectTitle = document.createElement('p');
         const pTodoLength = document.createElement('p');
@@ -86,7 +87,7 @@ class domChangeObject{
         divProject.addEventListener("click", (e)=>{
             this.resetTodoList();
             this.changeHeader(project);
-            this.fillTodoList(projects,index);
+            this.fillTodoList(projects,PROJECT_INDEX,TODO_INDEX);
         });
         this.sectionProjectList.appendChild(divProject);
     };
@@ -129,7 +130,8 @@ class domChangeObject{
         this.buttonEditProjectTitle.dataset.id = project.id;
         this.buttonDelete.dataset.id = project.id;
     };
-    fillTodoListIndividual(project){
+    fillTodoListIndividual(projects,PROJECT_INDEX,TODO_INDEX){
+        const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
         //const divId = document.createElement('p');
         const divTodo = document.createElement('div');
         const divTitle = document.createElement('div');
