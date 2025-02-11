@@ -11,6 +11,7 @@ class domChangeObject{
         this.buttonDelete = document.querySelector('.buttonDelete');
         this.formAdd = document.querySelector('.divDialogAdd');
         this.formEdit = document.querySelector('.formDialogEdit');
+        this.formHeaderEdit = document.querySelector('#formEditHeader');
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects,0);
@@ -78,6 +79,23 @@ class domChangeObject{
             this.fillTodoList(projects, projectId);
             e.preventDefault();
             dialog.close();
+        });
+        this.formHeaderEdit.addEventListener('submit',(e)=>{
+            const buttonHeaderEditSubmit = document.querySelector('.buttonHeaderEditSubmit');
+            const formData = new FormData(this.formHeaderEdit,buttonHeaderEditSubmit);
+            console.log(formData);
+            console.log(this.buttonDelete.dataset.id);
+            projects.changeProjectName(this.sectionProjectHeader.dataset.id,formData.get('inputHeaderTitle'));
+            projects.getProject();
+            this.resetProjectList();
+            this.resetTodoList();
+            this.fillProject(projects);
+            this.fillTodoList(projects, this.sectionProjectHeader.dataset.id);
+            this.formHeaderEdit.style.display = 'none';
+            this.sectionProjectHeader.style.display = 'block';
+            this.changeHeader(projects.getProject()[this.sectionProjectHeader.dataset.id]);
+            this.formHeaderEdit.reset();
+            e.preventDefault();
         });
         // changeProjectList(title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check,projectId,newProjectId,todoId)
     };

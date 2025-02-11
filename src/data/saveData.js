@@ -136,6 +136,17 @@ class saveDataObject{
             };
         };
     };
+    changeProjectName(projectId,newProjectName){
+        const PROJECT_LENGTH = this.projects.length;
+        console.log(projectId);
+        for(let i = 0; i < PROJECT_LENGTH;i++){
+            console.log(parseInt(this.projects[i].id) == projectId);
+            if(this.projects[i].id === parseInt(projectId)){
+                this.projects[i].projectName = newProjectName;
+                console.log(this.projects[i].projectName);
+            }
+        }
+    }
     getProject(){
         const PROJECT_LENGTH = this.projects.length;
         let tempArray = [];
