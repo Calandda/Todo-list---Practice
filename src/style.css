@@ -244,3 +244,7 @@ h1{
 .divEditTitle{
     display: grid;
 }
+
+#formEditHeader{
+    display: none;
+}

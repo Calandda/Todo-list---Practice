@@ -14,6 +14,7 @@ class domChangeObject{
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects,0);
+
         this.buttonDelete.addEventListener("click",(e)=>{
             projects.deleteProject(e.target.dataset.id);
             this.resetProjectList();
@@ -153,10 +154,15 @@ class domChangeObject{
         
     };
     changeHeader(project){
+        const formHeaderEdit = document.querySelector('#formEditHeader');
         this.sectionProjectHeader.textContent = project.projectName;
         this.sectionProjectHeader.dataset.id = project.id;
         this.buttonEditProjectTitle.dataset.id = project.id;
         this.buttonDelete.dataset.id = project.id;
+        this.buttonEditProjectTitle.addEventListener("click",(e)=>{
+            this.sectionProjectHeader.style.display = 'none';
+            formHeaderEdit.style.display = 'block';
+        });
     };
     fillTodoListIndividual(projects,PROJECT_INDEX,TODO_INDEX){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
@@ -270,6 +276,8 @@ class domChangeObject{
             this.sectionTodoList.removeChild(this.sectionTodoList.firstChild);
         };
     };
+    openHeaderEdit(){
+    }
 }
 
 export default domChangeObject;
