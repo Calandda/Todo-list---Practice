@@ -51,9 +51,34 @@ class domChangeObject{
         });
         this.formEdit.addEventListener("submit",(e)=>{
             const dialog = document.querySelector('#dialogEdit');
+            const buttonEditSubmit = document.querySelector('.buttonEditSubmit');
+            const formData = new FormData(this.formEdit,buttonEditSubmit);
+            const projectId = document.querySelector('h1').dataset.id;
+            console.log(formData);
+            console.log(this.formEdit.dataset.projectId);
+            console.log(this.formEdit.dataset.todoId);
+            projects.changeProjectList(
+                null,
+                null,
+                formData.get('inputEditTitle'),
+                null,
+                formData.get('inputEditDescription'),
+                formData.get('inputEditDate'),
+                formData.get('inputEditPriority'),
+                formData.get('inputEditNotes'),
+                null,
+                this.formEdit.dataset.projectId,
+                null,
+                this.formEdit.dataset.todoId);
+            this.formEdit.reset();
+            this.resetProjectList();
+            this.resetTodoList();
+            this.fillProject(projects);
+            this.fillTodoList(projects, projectId);
             e.preventDefault();
             dialog.close();
         });
+        // changeProjectList(title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check,projectId,newProjectId,todoId)
     };
     fillProject(projects){
         let tempArray = projects.getProject();
@@ -213,6 +238,9 @@ class domChangeObject{
     };
     fillEditModal(projects,PROJECT_INDEX,TODO_INDEX){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
+        const modalEdit = document.querySelector('.formDialogEdit');
+        modalEdit.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
+        modalEdit.dataset.todoId = project.getId();
         const submitButton = document.querySelector('.buttonEditSubmit');
         submitButton.dataset.id = projects.getProject()[PROJECT_INDEX].id;
         submitButton.dataset.todoId = project.getId();

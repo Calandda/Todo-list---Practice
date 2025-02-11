@@ -115,6 +115,9 @@ class saveDataObject{
         const PROJECT_LENGTH = this.projects.length;
         let TODO_LENGTH = 0;
         let currentProject = {};
+        projectId = parseInt(projectId);
+        todoId = parseInt(todoId);
+        console.log('tests');
         for(let i = 0; i < PROJECT_LENGTH;i++){
             if(this.projects[i].id === projectId){
                 TODO_LENGTH = this.projects[i].projectTodoList.length;
@@ -122,12 +125,12 @@ class saveDataObject{
                 for(let j = 0;j < TODO_LENGTH;j++){
                     if(currentProject[j].getId() === todoId){
                         currentProject[j].setTitle(newTitle);
-                        currentProject[j].setProjectName(newProjectName);
+                        //currentProject[j].setProjectName(newProjectName);
                         currentProject[j].setDescription(description);
                         currentProject[j].setDueDate(dueDate);
                         currentProject[j].setPriority(priority);
                         currentProject[j].setNotes(notes);
-                        currentProject[j].setCheck(check);
+                        //currentProject[j].setCheck(check);
                     };
                 };
             };

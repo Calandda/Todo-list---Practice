@@ -9,7 +9,7 @@ saveData.createProjectList('Project2 Test','Daily','Project2 Description','2025'
 saveData.createProjectList('Project2 Test2','Daily', 'Project2 Description', '2025', '2','Notes 2', false,2);
 saveData.createProjectList('Project2 Test3', 'Daily', 'Project3 Description', '2025', '3', 'Notes 3', false,2);
 //console.log(saveData.getProjectList('Daily'));
-saveData.changeProjectList('Project2 Test','Daily','AAAAAAAAAAAAAAAAAAA', 'Daily','TEST DESCRIPTION','TEST DUEDATE','1','TEST NOTES', false,2,0,0);
+saveData.changeProjectList(null,null,'AAAAAAAAAAAAAAAAAAA', 'Daily','TEST DESCRIPTION','TEST DUEDATE','1','TEST NOTES', false,2,0,0);
 //console.log(saveData.checkProject());
 //console.log(saveData.getProject());
 //console.log(saveData.deleteProject(1));
