@@ -13,13 +13,23 @@
 .bgColorBrown{
     background-color: hsla(59, 100%, 50%, 0.2);
 }
+.bgColorWhiteGray{
+    background-color: hsl(0, 0%, 95%);
+}
 .fontHeavy{
     font-weight: 700;
 }
 .fontMedium{
     font-size: 36px;
 }
-
+.removeBorder{
+    border: none;
+}
+.inputBorder{
+}
+.inputBorder:focus{
+    outline: 1px solid hsl(0,0%,99%);
+}
 body{
     margin: 0;
     padding: 0;
@@ -159,6 +169,11 @@ h1{
 }
 .divInputCreate > input{
     width: 70%;
+    align-self: center;
+    height: 40px;
+}
+.divInputCreate > input{
+    
 }
 .divAdd{
     display: flex;

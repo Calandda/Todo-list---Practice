@@ -135,6 +135,7 @@ class domChangeObject{
             this.changeHeader(project);
             this.fillTodoList(projects,PROJECT_INDEX,TODO_INDEX);
         });
+        divProject.draggable = true;
         this.sectionProjectList.appendChild(divProject);
     };
     fillProjectAddButton(project){
@@ -157,7 +158,7 @@ class domChangeObject{
         const divCreate = document.createElement('div');
         const inputCreate = document.createElement('input');
         const submitCreate = document.createElement('button');
-        inputCreate.classList.add('inputCreate', 'fontMedium');
+        inputCreate.classList.add('inputCreate', 'fontMedium', 'bgColorWhiteGray', 'removeBorder','inputBorder');
         divCreate.classList.add('divInputCreate','divProjectList');
         submitCreate.textContent = 'CREATE';
         submitCreate.classList.add('buttonProject');
