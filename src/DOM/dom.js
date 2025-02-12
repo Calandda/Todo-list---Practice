@@ -94,7 +94,6 @@ class domChangeObject{
             this.formHeaderEdit.style.display = 'none';
             this.sectionProjectHeader.style.display = 'block';
             this.changeHeader(projects.getProject()[this.sectionProjectHeader.dataset.id]);
-            this.formHeaderEdit.reset();
             e.preventDefault();
         });
         // changeProjectList(title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check,projectId,newProjectId,todoId)
@@ -173,6 +172,9 @@ class domChangeObject{
     };
     changeHeader(project){
         const formHeaderEdit = document.querySelector('#formEditHeader');
+        const inputHeaderTitle = document.querySelector('.inputHeaderTitle');
+        console.log(project.projectName);
+        inputHeaderTitle.value = project.projectName;
         this.sectionProjectHeader.textContent = project.projectName;
         this.sectionProjectHeader.dataset.id = project.id;
         this.buttonEditProjectTitle.dataset.id = project.id;
