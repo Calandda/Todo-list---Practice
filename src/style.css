@@ -16,6 +16,9 @@
 .fontHeavy{
     font-weight: 700;
 }
+.fontMedium{
+    font-size: 36px;
+}
 
 body{
     margin: 0;
@@ -65,11 +68,16 @@ nav > p{
 }
 .divProjectList{
     padding: 0px 20px 0px 20px;
-    flex-basis: 10%;
+    flex-basis: 100px;
     font-weight: 1000;
     font-size: 20px;
     display: flex;
     justify-content: space-between;
+    align-content: center;
+}
+.divProjectList > p{
+    justify-self: center;
+    align-self: center;
 }
 .pTodoCount{
     font-size: 14px;
@@ -92,13 +100,19 @@ main{
 .headerProjectTitle{
     display: flex;
     justify-content: space-between;
+    align-content: center;
+    height: 140px;
 }
 h1{
     font-weight: 700;
     font-size: 48px;
 }
-.divButtonProject{
-    align-content: center;
+.inputEditHeader{
+
+}
+.sectionButtonHeaders{
+    display: flex;
+    gap: 20px;
 }
 .buttonProject{
     border-radius: 0;
@@ -139,8 +153,12 @@ h1{
 }
 .divInputCreate{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-content: center;
+    gap: 20px;
+}
+.divInputCreate > input{
+    width: 70%;
 }
 .divAdd{
     display: flex;
@@ -247,4 +265,13 @@ h1{
 
 #formEditHeader{
     display: none;
+    align-items: center;
+    gap: 20px;
+}
+
+#formEditHeader > input{
+    width: 600px;
+    height: 60px;
+}
+#formEditHeader > button{
 }

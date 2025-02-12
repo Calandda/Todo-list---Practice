@@ -140,7 +140,7 @@ class domChangeObject{
     fillProjectAddButton(project){
         const divAddButton = document.createElement('div');
         const imgAddButton = document.createElement('img');
-        divAddButton.classList.add('divInputCreate','divProjectList');
+        divAddButton.classList.add('divInputCreate','divProjectList','fontMedium');
         imgAddButton.src = smallAddIcon;
         imgAddButton.classList.add('divAddSmall');
         divAddButton.appendChild(imgAddButton);
@@ -157,9 +157,10 @@ class domChangeObject{
         const divCreate = document.createElement('div');
         const inputCreate = document.createElement('input');
         const submitCreate = document.createElement('button');
-        inputCreate.classList.add('inputCreate');
+        inputCreate.classList.add('inputCreate', 'fontMedium');
         divCreate.classList.add('divInputCreate','divProjectList');
         submitCreate.textContent = 'CREATE';
+        submitCreate.classList.add('buttonProject');
         divCreate.appendChild(inputCreate);
         submitCreate.addEventListener("click",(e)=>{
             project.createProject(inputCreate.value); 
@@ -181,7 +182,7 @@ class domChangeObject{
         this.buttonDelete.dataset.id = project.id;
         this.buttonEditProjectTitle.addEventListener("click",(e)=>{
             this.sectionProjectHeader.style.display = 'none';
-            formHeaderEdit.style.display = 'block';
+            formHeaderEdit.style.display = 'flex';
         });
     };
     fillTodoListIndividual(projects,PROJECT_INDEX,TODO_INDEX){
