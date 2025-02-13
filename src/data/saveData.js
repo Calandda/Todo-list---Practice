@@ -176,7 +176,7 @@ class saveDataObject{
     getProjectIndex(projectId){
         const PROJECT_LENGTH = this.projects.length;
         for(let i = 0; i < PROJECT_LENGTH;i++){
-            console.log('getProjectIndex:'+projectId + '  ' + this.projects[i].id + ' ' + PROJECT_LENGTH);
+            console.log('getProjectIndex: projectId:'+projectId + '  currentId:' + this.projects[i].id + ' LENGTH:' + PROJECT_LENGTH);
             if(this.projects[i].id === parseInt(projectId)){
                 return(i);
             };

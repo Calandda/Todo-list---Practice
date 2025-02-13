@@ -98,8 +98,7 @@ class domChangeObject{
     fillProject(projects){
         let tempArray = projects.getProject();
         const PROJECT_LENGTH = tempArray.length;
-        let index = projects.getProjectIndex(projects);
-        let currentProjectId;
+        let index;
         for(let i = 0;i< PROJECT_LENGTH;i++){
             index = projects.getProjectIndex(projects.getProject()[i].id);
             this.fillProjectIndividual(projects,index);
@@ -109,15 +108,15 @@ class domChangeObject{
 
     fillTodoList(projects,projectId){
         let index = projects.getProjectIndex(projectId);
-        console.log('fillTodoList:' + projects.getProject().length + ' ' +  +  ' ' + index);
-       /** const TODO_LENGTH = projects.getProject()[index].projectTodoList.length;
+        console.log('fillTodoList: LENGTH:' + projects.getProject().length + ' ' +  ' INDEX:' + index);
+        const TODO_LENGTH = projects.getProject()[index].projectTodoList.length; // CURRENTLY NOT WORKING
         
         for(let i = 0;i < TODO_LENGTH;i++){
             this.fillTodoListIndividual(projects,index,i);
-        };**/
+        };
         this.fillTodoListAddButton(projects,index);
     };
-    fillProjectIndividual(projects,PROJECT_INDEX,TODO_INDEX){
+    fillProjectIndividual(projects,PROJECT_INDEX){
         const project = projects.getProject()[PROJECT_INDEX];
         const divProject = document.createElement('div');
         const pProjectTitle = document.createElement('p');
@@ -135,7 +134,7 @@ class domChangeObject{
         divProject.addEventListener("click", (e)=>{
             this.resetTodoList();
             this.changeHeader(project);
-            this.fillTodoList(projects,PROJECT_INDEX);
+            this.fillTodoList(projects,projects.getProject()[0].id);
         });
         divProject.draggable = true;
         this.sectionProjectList.appendChild(divProject);
