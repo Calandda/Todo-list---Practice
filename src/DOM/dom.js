@@ -106,7 +106,7 @@ class domChangeObject{
     fillTodoList(project,index){
         const TODO_LENGTH = project.getProject()[index].projectTodoList.length;
         for(let i = 0;i < TODO_LENGTH;i++){
-            this.fillTodoListIndividual(project,index,i);
+            this.fillTodoListIndividual(project,project.getProject()[index].id,i);
         };
         this.fillTodoListAddButton(project,index);
     };
@@ -237,10 +237,18 @@ class domChangeObject{
             }
         });
         pCheck.addEventListener("click",(e)=>{
-            console.log('check');
+            projects.setBoolean(parseInt(pCheck.dataset.projectId),parseInt(pCheck.dataset.todoId),'check');
+            this.resetProjectList();
+            this.resetTodoList();
+            this.fillProject(projects);
+            this.fillTodoList(projects, PROJECT_INDEX);
         });
         pPriority.addEventListener("click",(e)=>{
-            console.log('check');
+            projects.setBoolean(parseInt(pCheck.dataset.projectId), parseInt(pCheck.dataset.todoId), 'priority');
+            this.resetProjectList();
+            this.resetTodoList();
+            this.fillProject(projects);
+            this.fillTodoList(projects, PROJECT_INDEX);
         });
         this.sectionTodoList.appendChild(divTodo);
     };
