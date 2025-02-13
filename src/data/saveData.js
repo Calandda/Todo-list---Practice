@@ -173,7 +173,17 @@ class saveDataObject{
         };
         return(tempArray);
     }
+    getProjectIndex(projectId){
+        const PROJECT_LENGTH = this.projects.length;
+        for(let i = 0; i < PROJECT_LENGTH;i++){
+            console.log('getProjectIndex:'+projectId + '  ' + this.projects[i].id + ' ' + PROJECT_LENGTH);
+            if(this.projects[i].id === parseInt(projectId)){
+                return(i);
+            };
+        };
+    };
     deleteProject(id){
+        console.log('deleted project:' + id);
         this.projects = this.projects.filter(this.filterRemoveProject,id);
     };
     deleteProjectList(projectId,todoId){

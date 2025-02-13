@@ -147,6 +147,7 @@ h1{
 .divTodoList{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 75px 30px 80px 40px;
     grid-template-areas: 
     "divTitle divTitle divTitle divTitle"
     "pDate . . ."
@@ -158,6 +159,7 @@ h1{
     width: 260px;
     height: 300px;
     align-self: center;
+    justify-self: center;
 }
 .divTodoList:hover{
     background-color: hsla(0,0%,0%,0.25);

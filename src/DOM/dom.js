@@ -26,7 +26,7 @@ class domChangeObject{
             this.resetTodoList();
             this.changeHeader(projects.getProject()[0]);
             this.fillProject(projects);
-            this.fillTodoList(projects,0);
+            this.fillTodoList(projects,projects.getProject()[0].id);
         });
 
         this.formAdd.addEventListener("submit",(e)=>{
@@ -97,18 +97,24 @@ class domChangeObject{
     fillProject(projects){
         let tempArray = projects.getProject();
         const PROJECT_LENGTH = tempArray.length;
+        let index = projects.getProjectIndex(projects);
+        let currentProjectId;
         for(let i = 0;i< PROJECT_LENGTH;i++){
-            this.fillProjectIndividual(projects,i);
+            index = projects.getProjectIndex(projects.getProject()[i].id);
+            this.fillProjectIndividual(projects,index);
         };
         this.fillProjectAddButton(projects);
     };
 
-    fillTodoList(project,index){
-        const TODO_LENGTH = project.getProject()[index].projectTodoList.length;
+    fillTodoList(projects,index){
+        //let index = projects.getProjectIndex(projectId);
+        console.log('fillTodoList:' + projects.getProject().length + ' ' +  +  ' ' + index);
+        const TODO_LENGTH = projects.getProject()[index].projectTodoList.length;
+        
         for(let i = 0;i < TODO_LENGTH;i++){
-            this.fillTodoListIndividual(project,project.getProject()[index].id,i);
+            this.fillTodoListIndividual(projects,index,i);
         };
-        this.fillTodoListAddButton(project,index);
+        this.fillTodoListAddButton(projects,index);
     };
     fillProjectIndividual(projects,PROJECT_INDEX,TODO_INDEX){
         const project = projects.getProject()[PROJECT_INDEX];
@@ -128,7 +134,7 @@ class domChangeObject{
         divProject.addEventListener("click", (e)=>{
             this.resetTodoList();
             this.changeHeader(project);
-            this.fillTodoList(projects,PROJECT_INDEX,TODO_INDEX);
+            this.fillTodoList(projects,PROJECT_INDEX);
         });
         divProject.draggable = true;
         this.sectionProjectList.appendChild(divProject);
@@ -241,14 +247,14 @@ class domChangeObject{
             this.resetProjectList();
             this.resetTodoList();
             this.fillProject(projects);
-            this.fillTodoList(projects, PROJECT_INDEX);
+            this.fillTodoList(projects, parseInt(pCheck.dataset.projectId));
         });
         pPriority.addEventListener("click",(e)=>{
             projects.setBoolean(parseInt(pCheck.dataset.projectId), parseInt(pCheck.dataset.todoId), 'priority');
             this.resetProjectList();
             this.resetTodoList();
             this.fillProject(projects);
-            this.fillTodoList(projects, PROJECT_INDEX);
+            this.fillTodoList(projects, parseInt(pCheck.dataset.projectId));
         });
         this.sectionTodoList.appendChild(divTodo);
     };
