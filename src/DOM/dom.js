@@ -80,6 +80,7 @@ class domChangeObject{
         });
         this.formHeaderEdit.addEventListener('submit',(e)=>{
             const buttonHeaderEditSubmit = document.querySelector('.buttonHeaderEditSubmit');
+            const index = projects.getProjectIndex(this.sectionProjectHeader.dataset.id);
             const formData = new FormData(this.formHeaderEdit,buttonHeaderEditSubmit);
             projects.changeProjectName(this.sectionProjectHeader.dataset.id,formData.get('inputHeaderTitle'));
             projects.getProject();
@@ -89,7 +90,7 @@ class domChangeObject{
             this.fillTodoList(projects, this.sectionProjectHeader.dataset.id);
             this.formHeaderEdit.style.display = 'none';
             this.sectionProjectHeader.style.display = 'block';
-            this.changeHeader(projects.getProject()[this.sectionProjectHeader.dataset.id]);
+            this.changeHeader(projects.getProject()[index]);
             e.preventDefault();
         });
         // changeProjectList(title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check,projectId,newProjectId,todoId)
@@ -106,14 +107,14 @@ class domChangeObject{
         this.fillProjectAddButton(projects);
     };
 
-    fillTodoList(projects,index){
-        //let index = projects.getProjectIndex(projectId);
+    fillTodoList(projects,projectId){
+        let index = projects.getProjectIndex(projectId);
         console.log('fillTodoList:' + projects.getProject().length + ' ' +  +  ' ' + index);
-        const TODO_LENGTH = projects.getProject()[index].projectTodoList.length;
+       /** const TODO_LENGTH = projects.getProject()[index].projectTodoList.length;
         
         for(let i = 0;i < TODO_LENGTH;i++){
             this.fillTodoListIndividual(projects,index,i);
-        };
+        };**/
         this.fillTodoListAddButton(projects,index);
     };
     fillProjectIndividual(projects,PROJECT_INDEX,TODO_INDEX){
@@ -266,7 +267,7 @@ class domChangeObject{
         imgAdd.src = addIcon;
         imgAdd.classList.add('imgAdd');
         divAdd.appendChild(imgAdd);
-        divAdd.dataset.id = project.id;
+        //divAdd.dataset.id = project.id;
         divAdd.addEventListener("click", (e)=>{
             this.openAdd(project);
         });
