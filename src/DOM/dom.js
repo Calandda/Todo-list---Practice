@@ -1,5 +1,7 @@
 import addIcon from "../images/add.png";
 import smallAddIcon from "../images/addSmall.png";
+import checkedIcon from "../images/checklist-unchecked.png";
+import uncheckedIcon from "../images/checklist-checked.png";
 
 class domChangeObject{
     constructor(projects){
@@ -31,8 +33,7 @@ class domChangeObject{
             const buttonSubmit = document.querySelector('.buttonSubmit');
             e.preventDefault();
             console.log(projectId);
-            const formUpdate = document.querySelector('form');
-            const formData = new FormData(formUpdate,buttonSubmit);
+            const formData = new FormData(this.formAdd,buttonSubmit);
             console.log(formData);
             projects.createProjectList(
                 formData.get('inputTitle'),
@@ -197,7 +198,7 @@ class domChangeObject{
         const pDate = document.createElement('p');
         const pPriority = document.createElement('p');
         const pNotes = document.createElement('p');
-        const pCheck = document.createElement('p');
+        const pCheck = document.createElement('img');
 
         //divId.textContent = project.getId();
         pTitle.textContent = project.getTitle();
@@ -205,12 +206,18 @@ class domChangeObject{
         pDate.textContent = project.getDueDate();
         pPriority.textContent = project.getPriority();
         pNotes.textContent = project.getNotes();
-        pCheck.textContent = project.getCheck();
+        pCheck.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
+        pCheck.dataset.todoId = project.getId();
+        if(project.getCheck() === true){
+            pCheck.src = checkedIcon;
+        } else if(project.getCheck() === false){
+            pCheck.src = uncheckedIcon;
+        }
         divTodo.classList.add('divTodoList','bgColorDarkGrayHalfOpacity');
 
         //divTodo.appendChild(divId);
         divTitle.classList.add('divTodoTitle','bgColorDarkGray');
-        pTitle.classList.add('pTitle','fontHeavy');
+        pTitle.classList.add('pTitle','fontHeavy','overflowFalse');
         pPriority.classList.add('pPriority');
         pCheck.classList.add('pCheck');
         pDate.classList.add('pDate');
@@ -226,7 +233,13 @@ class domChangeObject{
         divTodo.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
         divTodo.dataset.todoId = project.getId();
         divTodo.addEventListener("click",(e)=>{
-            this.openEdit(projects,PROJECT_INDEX,TODO_INDEX);
+            console.log(e.target.classList);
+            if(e.target.classList[0] != 'pCheck'){
+                this.openEdit(projects,PROJECT_INDEX,TODO_INDEX);
+            }
+        });
+        pCheck.addEventListener("click",(e)=>{
+            console.log('check');
         });
         this.sectionTodoList.appendChild(divTodo);
     };

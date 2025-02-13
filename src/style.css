@@ -30,6 +30,9 @@
 .inputBorder:focus{
     outline: 1px solid hsl(0,0%,99%);
 }
+.overflowFalse{
+    overflow: hidden;
+}
 body{
     margin: 0;
     padding: 0;
@@ -157,6 +160,8 @@ h1{
 .divTodoTitle{
     display: grid;
     grid-template-columns: subgrid;
+    justify-content: center;
+    align-items: center;
     grid-template-areas:
     "pTitle pTitle pPriority pCheck";
     grid-area: divTitle;
@@ -222,6 +227,12 @@ h1{
 }
 .pTitle{
     grid-area: pTitle;
+    justify-self: center;
+    width: 140px;
+}
+.pCheck{
+    width: 40px;
+    justify-self: center;
 }
 .inputTitle{
     grid-area: inputTitle;
@@ -242,6 +253,8 @@ h1{
 }
 .pPriority{
     grid-area: pPriority;
+    width: 10px;
+    justify-self: end;
 }
 .inputPriority{
     grid-area: inputPriority;
