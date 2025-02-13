@@ -159,11 +159,12 @@ h1{
 }
 .divTodoTitle{
     display: grid;
+    height: 75px;
     grid-template-columns: subgrid;
     justify-content: center;
     align-items: center;
     grid-template-areas:
-    "pTitle pTitle pPriority pCheck";
+    "pCheck pTitle pTitle pPriority";
     grid-area: divTitle;
 }
 .divInputCreate{
@@ -253,8 +254,8 @@ h1{
 }
 .pPriority{
     grid-area: pPriority;
-    width: 10px;
-    justify-self: end;
+    width: 40px;
+    justify-self: center;
 }
 .inputPriority{
     grid-area: inputPriority;

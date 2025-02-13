@@ -4,7 +4,7 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
     projectName = projectName;
     description = description;
     dueDate = dueDate;
-    priority = priority;
+    priority = 0;
     notes = notes;
     check = check;
 
@@ -45,15 +45,21 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
         dueDate = temp;
     };
     function setPriority(temp){
-        priority = temp;
+        console.log(priority);
+        if(priority === 1){
+            priority = 0;
+        } else if(priority === 0){
+            priority = 1;
+        };
+        console.log(priority);
     };
     function setNotes(temp){
         notes = temp;
     };
     function setCheck(temp){
-        if(check === true && temp == false){
+        if(check === true){
             check = false;
-        } else if(check === false && temp == true){
+        } else if(check === false){
             check = true;
         }
     };
@@ -117,7 +123,6 @@ class saveDataObject{
         let currentProject = {};
         projectId = parseInt(projectId);
         todoId = parseInt(todoId);
-        console.log('tests');
         for(let i = 0; i < PROJECT_LENGTH;i++){
             if(this.projects[i].id === projectId){
                 TODO_LENGTH = this.projects[i].projectTodoList.length;
@@ -128,7 +133,7 @@ class saveDataObject{
                         //currentProject[j].setProjectName(newProjectName);
                         currentProject[j].setDescription(description);
                         currentProject[j].setDueDate(dueDate);
-                        currentProject[j].setPriority(priority);
+                        //currentProject[j].setPriority(priority);
                         currentProject[j].setNotes(notes);
                         //currentProject[j].setCheck(check);
                     };
@@ -138,12 +143,9 @@ class saveDataObject{
     };
     changeProjectName(projectId,newProjectName){
         const PROJECT_LENGTH = this.projects.length;
-        console.log(projectId);
         for(let i = 0; i < PROJECT_LENGTH;i++){
-            console.log(parseInt(this.projects[i].id) == projectId);
             if(this.projects[i].id === parseInt(projectId)){
                 this.projects[i].projectName = newProjectName;
-                console.log(this.projects[i].projectName);
             }
         }
     }
@@ -184,7 +186,7 @@ class saveDataObject{
                 currentProject = this.projects[i].projectTodoList;
                 //console.log(this.projects[i]);
                 for(let j = 0; j < TODO_LENGTH;j++){
-                    console.log(currentProject[j].getId() === todoId);
+                    //console.log(currentProject[j].getId() === todoId);
                     if(currentProject[j].getId() == todoId){
                         currentProject.splice(j,1);
                         return 0;
@@ -192,6 +194,28 @@ class saveDataObject{
                 };
             };
         };
+    };
+    setBoolean(projectId,todoId, setOperation){
+        const PROJECT_LENGTH = this.projects.length;
+        let  currentProject;
+        let TODO_LENGTH;
+        for(let i = 0; i < PROJECT_LENGTH;i++){
+            TODO_LENGTH = this.projects[i].projectTodoList.length;
+            currentProject = this.projects[i].projectTodoList;
+            if(this.projects[i].id === projectId){
+                for(let j = 0;j < TODO_LENGTH;j++){
+                    if(currentProject[j].getId() === todoId){
+                        if(setOperation === 'priority'){
+                            currentProject[j].setPriority();
+                        } else if(setOperation === 'check'){
+                            currentProject[j].setCheck();
+                        };
+                    };
+                };
+            };
+        };
+    };
+    setCheck(projectId,todoId){
     };
     filterRemoveProject(project){
         return(project.id != this);

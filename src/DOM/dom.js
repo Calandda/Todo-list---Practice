@@ -2,6 +2,8 @@ import addIcon from "../images/add.png";
 import smallAddIcon from "../images/addSmall.png";
 import checkedIcon from "../images/checklist-unchecked.png";
 import uncheckedIcon from "../images/checklist-checked.png";
+import bookmark from "../images/bookmark.png";
+import bookmarkHeart from "../images/bookmark-heart.png";
 
 class domChangeObject{
     constructor(projects){
@@ -32,15 +34,13 @@ class domChangeObject{
             const projectId = document.querySelector('h1').dataset.id;
             const buttonSubmit = document.querySelector('.buttonSubmit');
             e.preventDefault();
-            console.log(projectId);
             const formData = new FormData(this.formAdd,buttonSubmit);
-            console.log(formData);
             projects.createProjectList(
                 formData.get('inputTitle'),
                 '',
                 formData.get('inputDescription'),
                 formData.get('inputDate'),
-                formData.get('inputPriority'),
+                0,
                 formData.get('inputNotes'),
                 false,
                 parseInt(projectId)
@@ -57,9 +57,6 @@ class domChangeObject{
             const buttonEditSubmit = document.querySelector('.buttonEditSubmit');
             const formData = new FormData(this.formEdit,buttonEditSubmit);
             const projectId = document.querySelector('h1').dataset.id;
-            console.log(formData);
-            console.log(this.formEdit.dataset.projectId);
-            console.log(this.formEdit.dataset.todoId);
             projects.changeProjectList(
                 null,
                 null,
@@ -67,7 +64,7 @@ class domChangeObject{
                 null,
                 formData.get('inputEditDescription'),
                 formData.get('inputEditDate'),
-                formData.get('inputEditPriority'),
+                0,
                 formData.get('inputEditNotes'),
                 null,
                 this.formEdit.dataset.projectId,
@@ -84,8 +81,6 @@ class domChangeObject{
         this.formHeaderEdit.addEventListener('submit',(e)=>{
             const buttonHeaderEditSubmit = document.querySelector('.buttonHeaderEditSubmit');
             const formData = new FormData(this.formHeaderEdit,buttonHeaderEditSubmit);
-            console.log(formData);
-            console.log(this.buttonDelete.dataset.id);
             projects.changeProjectName(this.sectionProjectHeader.dataset.id,formData.get('inputHeaderTitle'));
             projects.getProject();
             this.resetProjectList();
@@ -111,7 +106,6 @@ class domChangeObject{
     fillTodoList(project,index){
         const TODO_LENGTH = project.getProject()[index].projectTodoList.length;
         for(let i = 0;i < TODO_LENGTH;i++){
-            console.log(project);
             this.fillTodoListIndividual(project,index,i);
         };
         this.fillTodoListAddButton(project,index);
@@ -176,7 +170,6 @@ class domChangeObject{
     changeHeader(project){
         const formHeaderEdit = document.querySelector('#formEditHeader');
         const inputHeaderTitle = document.querySelector('.inputHeaderTitle');
-        console.log(project.projectName);
         inputHeaderTitle.value = project.projectName;
         this.sectionProjectHeader.textContent = project.projectName;
         this.sectionProjectHeader.dataset.id = project.id;
@@ -196,7 +189,7 @@ class domChangeObject{
         const pTitle = document.createElement('p');
         const pDescription = document.createElement('p');
         const pDate = document.createElement('p');
-        const pPriority = document.createElement('p');
+        const pPriority = document.createElement('img');
         const pNotes = document.createElement('p');
         const pCheck = document.createElement('img');
 
@@ -204,10 +197,16 @@ class domChangeObject{
         pTitle.textContent = project.getTitle();
         pDescription.textContent = project.getDescription();
         pDate.textContent = project.getDueDate();
-        pPriority.textContent = project.getPriority();
+        if(parseInt(project.getPriority()) === 0){
+            pPriority.src = bookmark;
+        } else if(parseInt(project.getPriority()) === 1){
+            pPriority.src = bookmarkHeart;
+        };
         pNotes.textContent = project.getNotes();
         pCheck.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
         pCheck.dataset.todoId = project.getId();
+        pPriority.dataset.id = projects.getProject()[PROJECT_INDEX].id;
+        pPriority.dataset.todoId = project.getId();
         if(project.getCheck() === true){
             pCheck.src = checkedIcon;
         } else if(project.getCheck() === false){
@@ -233,12 +232,14 @@ class domChangeObject{
         divTodo.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
         divTodo.dataset.todoId = project.getId();
         divTodo.addEventListener("click",(e)=>{
-            console.log(e.target.classList);
-            if(e.target.classList[0] != 'pCheck'){
+            if(e.target.classList[0] != 'pCheck' && e.target.classList[0] != 'pPriority'){
                 this.openEdit(projects,PROJECT_INDEX,TODO_INDEX);
             }
         });
         pCheck.addEventListener("click",(e)=>{
+            console.log('check');
+        });
+        pPriority.addEventListener("click",(e)=>{
             console.log('check');
         });
         this.sectionTodoList.appendChild(divTodo);
@@ -290,7 +291,7 @@ class domChangeObject{
         const inputEditProjectTitle = document.querySelector('.inputEditProjectTitle');
         const inputEditDescription = document.querySelector('.inputEditDescription');
         const inputEditDate = document.querySelector('.inputEditDate');
-        const inputEditPriority = document.querySelector('.inputEditPriority');
+        //const inputEditPriority = document.querySelector('.inputEditPriority');
         const inputEditNotes = document.querySelector('.inputEditNotes');
         
         pMainTodoTitle.textContent = project.getTitle();
@@ -298,7 +299,7 @@ class domChangeObject{
         
         inputEditDescription.value = project.getDescription();
         inputEditDate.value = project.getDueDate();
-        inputEditPriority.value = project.getPriority();
+        //inputEditPriority.value = project.getPriority();
         inputEditNotes.value = project.getNotes();
     };
     resetProjectList(){
