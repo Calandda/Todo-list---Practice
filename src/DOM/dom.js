@@ -191,6 +191,7 @@ class domChangeObject{
         
         //const divId = document.createElement('p');
         const divTodo = document.createElement('div');
+        const sectionTodo = document.createElement('section');
         const divTitle = document.createElement('div');
         const pTitle = document.createElement('p');
         const pDescription = document.createElement('p');
@@ -219,6 +220,7 @@ class domChangeObject{
             pCheck.src = uncheckedIcon;
         }
         divTodo.classList.add('divTodoList','bgColorDarkGrayHalfOpacity');
+        sectionTodo.classList.add('sectionDivTodo');
 
         //divTodo.appendChild(divId);
         divTitle.classList.add('divTodoTitle','bgColorDarkGray');
@@ -230,10 +232,10 @@ class domChangeObject{
         pNotes.classList.add('pNotes');
         divTitle.appendChild(pTitle);
         divTodo.appendChild(divTitle);
-        divTodo.appendChild(pDescription);
-        divTodo.appendChild(pDate);
+        sectionTodo.appendChild(pDescription);
+        sectionTodo.appendChild(pDate);
         divTitle.appendChild(pPriority);
-        divTodo.appendChild(pNotes);
+        sectionTodo.appendChild(pNotes);
         divTitle.appendChild(pCheck);
         divTodo.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
         divTodo.dataset.todoId = project.getId();
@@ -256,6 +258,7 @@ class domChangeObject{
             this.fillProject(projects);
             this.fillTodoList(projects, parseInt(pCheck.dataset.projectId));
         });
+        divTodo.appendChild(sectionTodo);
         this.sectionTodoList.appendChild(divTodo);
     };
     fillTodoListAddButton(projects,PROJECT_INDEX){
@@ -276,6 +279,8 @@ class domChangeObject{
     openAdd(projects){
         const dialog = document.querySelector('#dialogAdd');
         const dialogButtonClose = document.querySelector('.buttonDialogClose');
+        const inputDate = document.querySelector('.inputDate');
+        inputDate.valueAsDate = new Date();
         dialog.showModal();
         dialogButtonClose.addEventListener("click",(e)=>{
             e.preventDefault();
