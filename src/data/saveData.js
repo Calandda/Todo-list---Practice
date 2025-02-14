@@ -178,12 +178,13 @@ class saveDataObject{
         for(let i = 0; i < PROJECT_LENGTH;i++){
             console.log('getProjectIndex: projectId:'+projectId + '  currentId:' + this.projects[i].id + ' LENGTH:' + PROJECT_LENGTH);
             if(this.projects[i].id === parseInt(projectId)){
+                //console.log('getProjectIndex: projectId:'+projectId + '  currentId:' + this.projects[i].id + ' LENGTH:' + PROJECT_LENGTH);
                 return(i);
             };
         };
     };
     deleteProject(id){
-        console.log('deleted project:' + id);
+        console.log('deleted project: projectId:' + id);
         this.projects = this.projects.filter(this.filterRemoveProject,id);
     };
     deleteProjectList(projectId,todoId){
