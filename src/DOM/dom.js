@@ -16,6 +16,7 @@ class domChangeObject{
         this.formAdd = document.querySelector('.divDialogAdd');
         this.formEdit = document.querySelector('.formDialogEdit');
         this.formHeaderEdit = document.querySelector('#formEditHeader');
+        this.divTodoProgress= document.querySelector('.divTodoProgress');
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects,0);
@@ -27,6 +28,19 @@ class domChangeObject{
             this.changeHeader(projects.getProject()[0]);
             this.fillProject(projects);
             this.fillTodoList(projects,projects.getProject()[0].id);
+        });
+
+        this.divTodoProgress.addEventListener("click",(e)=>{
+            console.log(e.target.classList[0]);
+            if(e.target.classList[0] === 'divTodoProgressHeader'){
+                if (e.target.dataset.switch == 1){
+                    this.sectionTodoList.style.display = 'none';
+                    e.target.dataset.switch = 0;
+                } else if(e.target.dataset.switch == 0){
+                    this.sectionTodoList.style.display = 'grid';
+                    e.target.dataset.switch = 1;
+                }
+            }
         });
 
         this.formAdd.addEventListener("submit",(e)=>{

@@ -31,6 +31,9 @@
 .borderBlack{
     border: 2px solid hsla(0,0%,0%,0.5);
 }
+.borderCircle{
+    border-radius: 20px;
+}
 .inputBorder{
 }
 .inputBorder:focus{
@@ -150,6 +153,22 @@ h1{
     overflow-y: auto;
     gap: 30px;
 }
+.divTodoProgress{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.divTodoProgressHeader{
+    width: 100%;
+    position: relative;
+    height: 60px;
+    display: flex;
+}
+.divTodoProgressHeader > p{
+   justify-self: center;
+   padding-left: 40px;
+   align-self: center;
+}
 .divTodoList{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -165,8 +184,7 @@ h1{
     justify-self: center;
 }
 .divTodoList:hover{
-    width: 280px;
-    height: 320px;
+    box-shadow: 10px 10px 10px hsla(0,0%,0%,0.1);
 }
 .divTodoTitle{
     display: grid;
@@ -429,3 +447,5 @@ h1{
     justify-self: center;
     align-self: center;
 }
+
+
