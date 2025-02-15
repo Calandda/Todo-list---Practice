@@ -22,8 +22,14 @@
 .fontMedium{
     font-size: 36px;
 }
+.fontSmall{
+    font-size: 12px;
+}
 .removeBorder{
     border: none;
+}
+.borderBlack{
+    border: 2px solid hsla(0,0%,0%,0.5);
 }
 .inputBorder{
 }
@@ -147,7 +153,7 @@ h1{
 .divTodoList{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 75px;
+    grid-template-rows: 1fr 4fr;
     grid-template-areas: 
     "divTitle divTitle divTitle divTitle"
     "sectionDivTodo sectionDivTodo sectionDivTodo sectionDivTodo";
@@ -159,30 +165,85 @@ h1{
     justify-self: center;
 }
 .divTodoList:hover{
-    background-color: hsla(0,0%,0%,0.25);
     width: 280px;
     height: 320px;
 }
-.sectionDivTodo{
-    padding: 20px;
-    grid-area: sectionDivTodo;
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-template-rows: 10px 80px 40px;
-    grid-template-areas: "pDate . . ."
-    "pDescription pDescription pDescription pDescription"
-    "pDescription pDescription pDescription pDescription"
-    "pNotes . . .";
-}
 .divTodoTitle{
     display: grid;
-    height: 75px;
+    height: 60px;
     grid-template-columns: subgrid;
     justify-content: center;
     align-items: center;
     grid-template-areas:
     "pCheck pTitle pTitle pPriority";
     grid-area: divTitle;
+}
+.sectionDivTodo{
+    padding: 10px 20px 10px 20px;
+    grid-area: sectionDivTodo;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: 20px 90px 40px;
+    grid-template-areas: 
+    "divDate divDate divDate divDate"
+    "divDescription divDescription divDescription divDescription"
+    "divNotes divNotes divNotes divNotes";
+}
+
+.divDate{
+    grid-area: divDate;
+    width: 100%;
+    height: 24px;
+}
+.divDate > .pDate{
+    position: relative;
+    top:-50px;
+    left: 70px;
+    width: 100px;
+}
+.pDateTitle{
+    position: relative;
+    top: -26px;
+    left: 10px;
+    width: 43px;
+}
+.divDescription{
+    grid-area: divDescription;
+    position: relative;
+    top: 20px;
+    width: 100%;
+    height: 120%;
+}
+.divDescription > .pDescription{
+    position: relative;
+    padding: 0px 10px 0px 10px;
+    top: -40px;
+    width: 92%;
+    height: 85%;
+}
+.pDescriptionTitle{
+    position: relative;
+    top: -27px;
+    left: 10px;
+    width: 110px;
+}
+.divNotes{
+    grid-area: divNotes;
+    position: relative;
+    top: 54px;
+    width: 100%;
+    height: 120%;
+}
+.pNotesTitle{
+    position: relative;
+    top: -26px;
+    left: 10px;
+    width: 54px;
+}
+.divNotes > .pNotes{
+    position: relative;
+    top: -44px;
+    left: 10px;
 }
 .divInputCreate{
     display: flex;
@@ -264,6 +325,9 @@ h1{
     grid-area: inputDescription;
     height: 60px;
     resize: none;
+}
+.sectionDivTodo > .pDate{
+    
 }
 .pDate{
     grid-area: pDate;

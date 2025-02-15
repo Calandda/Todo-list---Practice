@@ -194,32 +194,52 @@ class domChangeObject{
         const sectionTodo = document.createElement('section');
         const divTitle = document.createElement('div');
         const pTitle = document.createElement('p');
-        const pDescription = document.createElement('p');
-        const pDate = document.createElement('p');
         const pPriority = document.createElement('img');
-        const pNotes = document.createElement('p');
         const pCheck = document.createElement('img');
+
+        const divDate = document.createElement('div');
+        const pDateTitle = document.createElement('p');
+        const pDate = document.createElement('p');
+
+        const divDescription = document.createElement('div');
+        const pDescription = document.createElement('p');
+        const pDescriptionTitle = document.createElement('p');
+
+        const divNotes = document.createElement('div');
+        const pNotes = document.createElement('p');
+        const pNotesTitle = document.createElement('p');
 
         //divId.textContent = project.getId();
         pTitle.textContent = project.getTitle();
-        pDescription.textContent = project.getDescription();
-        pDate.textContent = project.getDueDate();
+       
         if(parseInt(project.getPriority()) === 0){
             pPriority.src = bookmark;
         } else if(parseInt(project.getPriority()) === 1){
             pPriority.src = bookmarkHeart;
         };
-        pNotes.textContent = project.getNotes();
+        
+        divTodo.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
+        divTodo.dataset.todoId = project.getId();
         pCheck.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
         pCheck.dataset.todoId = project.getId();
         pPriority.dataset.id = projects.getProject()[PROJECT_INDEX].id;
         pPriority.dataset.todoId = project.getId();
+
+        pDateTitle.textContent = "DATE";
+        pDate.textContent = project.getDueDate();
+        
+        pDescriptionTitle.textContent = 'DESCRIPTION';
+        pDescription.textContent = project.getDescription();
+
+        pNotesTitle.textContent = 'NOTES'
+        pNotes.textContent = project.getNotes();
+        
         if(project.getCheck() === true){
             pCheck.src = checkedIcon;
         } else if(project.getCheck() === false){
             pCheck.src = uncheckedIcon;
         }
-        divTodo.classList.add('divTodoList','bgColorDarkGrayHalfOpacity');
+        divTodo.classList.add('divTodoList','bgColorGray');
         sectionTodo.classList.add('sectionDivTodo');
 
         //divTodo.appendChild(divId);
@@ -227,18 +247,41 @@ class domChangeObject{
         pTitle.classList.add('pTitle','fontHeavy','overflowFalse');
         pPriority.classList.add('pPriority');
         pCheck.classList.add('pCheck');
+
+        divDate.classList.add('divDate','borderBlack','bgColorGray');
+        pDateTitle.classList.add('pDateTitle', 'bgColorGray','fontHeavy');
         pDate.classList.add('pDate');
-        pDescription.classList.add('pDescription');
-        pNotes.classList.add('pNotes');
+
+        divDescription.classList.add('divDescription', 'borderBlack', 'bgColorGray');
+        pDescription.classList.add('pDescription', 'fontSmall');
+        pDescriptionTitle.classList.add('pDescriptionTitle', 'bgColorGray','fontHeavy');
+        
+        divNotes.classList.add('divNotes','borderBlack','bgColorGray');
+        pNotes.classList.add('pNotes','fontSmall');
+        pNotesTitle.classList.add('pNotesTitle', 'bgColorGray', 'fontHeavy');
+
+
         divTitle.appendChild(pTitle);
-        divTodo.appendChild(divTitle);
-        sectionTodo.appendChild(pDescription);
-        sectionTodo.appendChild(pDate);
         divTitle.appendChild(pPriority);
-        sectionTodo.appendChild(pNotes);
         divTitle.appendChild(pCheck);
-        divTodo.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
-        divTodo.dataset.todoId = project.getId();
+        divTodo.appendChild(divTitle);
+
+        divDate.append(pDateTitle);
+        divDate.append(pDate);
+
+        divDescription.append(pDescriptionTitle);
+        divDescription.append(pDescription);
+
+        divNotes.append(pNotesTitle);
+        divNotes.append(pNotes);
+        
+
+        sectionTodo.append(divDate);
+        sectionTodo.append(divDescription);
+        sectionTodo.append(divNotes);
+        divTodo.appendChild(sectionTodo);
+        this.sectionTodoList.appendChild(divTodo);
+
         divTodo.addEventListener("click",(e)=>{
             if(e.target.classList[0] != 'pCheck' && e.target.classList[0] != 'pPriority'){
                 this.openEdit(projects,PROJECT_INDEX,TODO_INDEX);
@@ -258,8 +301,6 @@ class domChangeObject{
             this.fillProject(projects);
             this.fillTodoList(projects, parseInt(pCheck.dataset.projectId));
         });
-        divTodo.appendChild(sectionTodo);
-        this.sectionTodoList.appendChild(divTodo);
     };
     fillTodoListAddButton(projects,PROJECT_INDEX){
         const project = projects.getProject()[PROJECT_INDEX];
