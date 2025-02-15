@@ -6,7 +6,7 @@ function projectObject(title,projectName,description,dueDate,priority,notes,chec
     dueDate = dueDate;
     priority = 0;
     notes = notes;
-    check = check;
+    check = true;
 
     function getTitle(){
         return(title);

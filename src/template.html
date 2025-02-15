@@ -34,14 +34,13 @@
                 
             </section>
         </main>
-        <dialog id = "dialogAdd" class = 'dialogAdd'>
+        <dialog id = "dialogAdd" class = 'dialogAdd bgColorGray'>
             <div>
+                <div class = 'divDialogHeader bgColorDarkGray'>
+                    <p class="pNew fontHeavy">ENTER NEW TO-DO LIST ITEM</p>
+                    <button class = "buttonDialogClose fontHeavy">X</button>
+                </div>
                 <form class = "divDialogAdd">
-                    <div class = 'divDialogHeader bgColorDarkGray'>
-                        <p class="pNew fontHeavy">ENTER NEW TO-DO LIST ITEM</p>
-                        <button class = "buttonDialogClose fontHeavy">X</button>
-                    </div>
-                    
                     <label class = 'pTitle fontHeavy' for="inputTitle">TITLE:</label><input name="inputTitle" class = 'inputTitle' type="text" placeholder="INPUT TITLE">
                     <label class = 'pDescription fontHeavy' for="inputDescription">DESCRIPTION:</label><textarea name="inputDescription" class = 'inputDescription' placeholder="INPUT DESCRIPTION" rows = 3 cols 30></textarea>
                     <label class = 'pDate fontHeavy' for="inputDate">DUE DATE:</label><input name="inputDate" class = 'inputDate' type="date" placeholder="INPUT DATE">
@@ -51,12 +50,12 @@
                 </form>
             </div>
         </dialog>
-        <dialog id = 'dialogEdit' class = 'dialogAdd'>
+        <dialog id = 'dialogEdit' class = 'dialogAdd bgColorGray'>
+            <div class = 'divEditTitle bgColorDarkGray'>
+                <p class = 'pMainTodoTitle fontHeavy'>PLACEHOLDER</p>
+                <button class = 'buttonDialogEditClose fontHeavy'>X</button>
+            </div>
             <form class = "formDialogEdit">
-                <div class = 'divEditTitle bgColorDarkGray'>
-                    <p class = 'pMainTodoTitle fontHeavy'>PLACEHOLDER</p>
-                    <button class = 'buttonDialogEditClose fontHeavy'>X</button>
-                </div>
                 <label for = 'inputEditTitle' class = 'fontHeavy'>TITLE:</label><input class = 'inputEditTitle' name = 'inputEditTitle' type="text">
                 <label for = 'inputEditProjectTitle' class = 'fontHeavy'>PROJECT:</label><select class = 'inputEditProjectTitle' name = "inputEditProjectTitle" disabled =  true></select>
                 <label for = 'inputEditDescription' class = 'fontHeavy'>DESCRIPTION:</label><textarea class = 'inputEditDescription' name = "inputEditDescription"></textarea>
