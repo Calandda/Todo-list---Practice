@@ -22,6 +22,9 @@
                     <button class = 'buttonHeaderEditSubmit buttonProject fontHeavy'>SUBMIT</button>
                 </form>
                 <section class = 'sectionButtonHeaders'>
+                    <button class = 'buttonProject fontHeavy' disabled="true">
+                        ADD TODO LIST ITEM
+                    </button>
                     <button class = 'buttonEditProjectTitle buttonProject fontHeavy'>
                         EDIT NAME
                     </button>
@@ -30,7 +33,7 @@
                     </button>
                 </section>
             </header>
-            <div class = 'divTodoProgress borderBlack'>
+            <div class = 'divTodoProgress borderBlack overflowTrue'>
                 <div class = 'divTodoProgressHeader bgColorDarkGray' data-switch = 1>
                     <p class = 'fontHeavy'>IN PROGRESS</p>
                 </div>
@@ -38,9 +41,12 @@
                     
                 </section>
             </div>
-            <div class = 'divTodoCompleted' data-switch = 1>
-                <section class = 'sectionTodoProgress'>
-
+            <div class = 'divTodoCompleted borderBlack overflowTrue'>
+                <div class = 'divTodoCompleteHeader divTodoProgressHeader bgColorDarkGray' data-switch = 1>
+                    <p class = 'fontHeavy'>COMPLETED</p>
+                </div>
+                <section class = 'sectionTodoComplete'>
+                    PLACEHOLDER
                 </section>
             </div>
         </main>

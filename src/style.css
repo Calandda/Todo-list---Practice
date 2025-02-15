@@ -42,6 +42,9 @@
 .overflowFalse{
     overflow: hidden;
 }
+.overflowTrue{
+    overflow-y: auto;
+}
 body{
     margin: 0;
     padding: 0;
@@ -125,11 +128,13 @@ main{
     display: flex;
     justify-content: space-between;
     align-content: center;
-    height: 140px;
+    height: 100px;
 }
 h1{
     font-weight: 700;
     font-size: 48px;
+    justify-self: center;
+    align-self: center;
 }
 .inputEditHeader{
 
@@ -151,7 +156,7 @@ h1{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-auto-rows: 320px;
     overflow-y: auto;
-    gap: 30px;
+    gap: 14px;
 }
 .divTodoProgress{
     overflow: hidden;
@@ -206,6 +211,10 @@ h1{
     "divDate divDate divDate divDate"
     "divDescription divDescription divDescription divDescription"
     "divNotes divNotes divNotes divNotes";
+}
+
+.divTodoCompleted{
+    margin-top: 20px;
 }
 
 .pDescription,

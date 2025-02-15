@@ -11,12 +11,14 @@ class domChangeObject{
         this.sectionProjectList = document.querySelector('.sectionProject');
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
+        this.sectionTodoListComplete = document.querySelector('.sectionTodoComplete');
         this.buttonEditProjectTitle = document.querySelector('.buttonEditProjectTitle');
         this.buttonDelete = document.querySelector('.buttonDelete');
         this.formAdd = document.querySelector('.divDialogAdd');
         this.formEdit = document.querySelector('.formDialogEdit');
         this.formHeaderEdit = document.querySelector('#formEditHeader');
         this.divTodoProgress= document.querySelector('.divTodoProgress');
+        this.divTodoCompleted = document.querySelector('.divTodoCompleted');
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
         this.fillTodoList(projects,0);
@@ -38,6 +40,17 @@ class domChangeObject{
                     e.target.dataset.switch = 0;
                 } else if(e.target.dataset.switch == 0){
                     this.sectionTodoList.style.display = 'grid';
+                    e.target.dataset.switch = 1;
+                }
+            }
+        });
+        this.divTodoCompleted.addEventListener("click",(e)=>{
+            if(e.target.classList[0] === 'divTodoCompleteHeader'){
+                if(e.target.dataset.switch == 1){
+                    this.sectionTodoListComplete.style.display = 'none';
+                    e.target.dataset.switch = 0;
+                } else if (e.target.dataset.switch == 0){
+                    this.sectionTodoListComplete.style.display = 'grid';
                     e.target.dataset.switch = 1;
                 }
             }
