@@ -12,6 +12,8 @@ class domChangeObject{
         this.sectionProjectHeader = document.querySelector('h1');
         this.sectionTodoList = document.querySelector('.sectionTodo');
         this.sectionTodoListComplete = document.querySelector('.sectionTodoComplete');
+        this.todoCountProgress = document.querySelector('.todoCountProgress');
+        this.todoCountComplete = document.querySelector('.todoCountComplete');
         this.buttonEditProjectTitle = document.querySelector('.buttonEditProjectTitle');
         this.buttonDelete = document.querySelector('.buttonDelete');
         this.formAdd = document.querySelector('.divDialogAdd');
@@ -135,8 +137,10 @@ class domChangeObject{
 
     fillTodoList(projects,projectId){
         let index = projects.getProjectIndex(projectId);
-        console.log('fillTodoList: LENGTH:' + projects.getProject().length + ' projectId:' + projectId +  ' INDEX:' + index);
-        const TODO_LENGTH = projects.getProject()[index].projectTodoList.length; // CURRENTLY NOT WORKING
+        //console.log('fillTodoList: LENGTH:' + projects.getProject().length + ' projectId:' + projectId +  ' INDEX:' + index);
+        this.todoCountComplete.textContent = 0;
+        this.todoCountProgress.textContent = 0;
+        const TODO_LENGTH = projects.getProject()[index].projectTodoList.length; 
         for(let j = 1; j >= 0;j--){
             for(let i = 0;i < TODO_LENGTH;i++){
                 this.fillTodoListIndividual(projects,index,i,j);
@@ -311,8 +315,10 @@ class domChangeObject{
         sectionTodo.append(divNotes);
         divTodo.appendChild(sectionTodo);
         if(pCheck.dataset.check === 'false' && PRIORITY === project.getPriority()){
+            this.todoCountProgress.textContent = parseInt(this.todoCountProgress.textContent)+1;
             this.sectionTodoList.appendChild(divTodo);
         } else if (pCheck.dataset.check === 'true' && PRIORITY === project.getPriority()){
+            this.todoCountComplete.textContent = parseInt(this.todoCountComplete.textContent) + 1;
             this.sectionTodoListComplete.appendChild(divTodo);
         }
         divTodo.addEventListener("click",(e)=>{
