@@ -1,7 +1,7 @@
 import addIcon from "../images/add.png";
 import smallAddIcon from "../images/addSmall.png";
-import checkedIcon from "../images/checklist-unchecked.png";
-import uncheckedIcon from "../images/checklist-checked.png";
+import checkedIcon from "../images/checklist-checked.png";
+import uncheckedIcon from "../images/checklist-unchecked.png";
 import bookmark from "../images/bookmark.png";
 import bookmarkHeart from "../images/bookmark-heart.png";
 
@@ -137,10 +137,11 @@ class domChangeObject{
         let index = projects.getProjectIndex(projectId);
         console.log('fillTodoList: LENGTH:' + projects.getProject().length + ' projectId:' + projectId +  ' INDEX:' + index);
         const TODO_LENGTH = projects.getProject()[index].projectTodoList.length; // CURRENTLY NOT WORKING
-        
-        for(let i = 0;i < TODO_LENGTH;i++){
-            this.fillTodoListIndividual(projects,index,i);
-        };
+        for(let j = 1; j >= 0;j--){
+            for(let i = 0;i < TODO_LENGTH;i++){
+                this.fillTodoListIndividual(projects,index,i,j);
+            };
+        }
         this.fillTodoListAddButton(projects,index);
     };
     fillProjectIndividual(projects,projectId, PROJECT_INDEX){
@@ -213,7 +214,7 @@ class domChangeObject{
             formHeaderEdit.style.display = 'flex';
         });
     };
-    fillTodoListIndividual(projects,PROJECT_INDEX,TODO_INDEX){
+    fillTodoListIndividual(projects,PROJECT_INDEX,TODO_INDEX,PRIORITY){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
         
         //const divId = document.createElement('p');
@@ -262,8 +263,10 @@ class domChangeObject{
         pNotes.textContent = project.getNotes();
         
         if(project.getCheck() === true){
+            pCheck.dataset.check = true;
             pCheck.src = checkedIcon;
         } else if(project.getCheck() === false){
+            pCheck.dataset.check = false;
             pCheck.src = uncheckedIcon;
         }
         divTodo.classList.add('divTodoList','bgColorGray');
@@ -307,8 +310,11 @@ class domChangeObject{
         sectionTodo.append(divDescription);
         sectionTodo.append(divNotes);
         divTodo.appendChild(sectionTodo);
-        this.sectionTodoList.appendChild(divTodo);
-
+        if(pCheck.dataset.check === 'false' && PRIORITY === project.getPriority()){
+            this.sectionTodoList.appendChild(divTodo);
+        } else if (pCheck.dataset.check === 'true' && PRIORITY === project.getPriority()){
+            this.sectionTodoListComplete.appendChild(divTodo);
+        }
         divTodo.addEventListener("click",(e)=>{
             if(e.target.classList[0] != 'pCheck' && e.target.classList[0] != 'pPriority'){
                 this.openEdit(projects,PROJECT_INDEX,TODO_INDEX);
@@ -397,6 +403,9 @@ class domChangeObject{
     resetTodoList(){
         while(this.sectionTodoList.firstChild){
             this.sectionTodoList.removeChild(this.sectionTodoList.firstChild);
+        };
+        while(this.sectionTodoListComplete.firstChild){
+            this.sectionTodoListComplete.removeChild(this.sectionTodoListComplete.firstChild);
         };
     };
     openHeaderEdit(){
