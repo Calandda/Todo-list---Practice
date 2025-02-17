@@ -1,84 +1,68 @@
-function projectObject(title,projectName,description,dueDate,priority,notes,check,currentId){
-    currentId = currentId;
-    title = title;
-    projectName = projectName;
-    description = description;
-    dueDate = dueDate;
-    priority = 0;
-    notes = notes;
-    check = false;
-
-    function getTitle(){
-        return(title);
+class projectObject{
+    constructor(title,projectName,description,dueDate,priority,notes,check,currentId){
+        this.currentId = currentId;
+        this.title = title;
+        this.projectName = projectName;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = 0;
+        this.notes = notes;
+        this.check = false;
+    }
+    getTitle(){
+        return(this.title);
     };
-    function getProjectName(){
-        return(projectName);
+    getProjectName(){
+        return(this.projectName);
     };
-    function getDescription(){
-        return(description);
+    getDescription(){
+        return(this.description);
     };
-    function getDueDate(){
-        return(dueDate);
+    getDueDate(){
+        return(this.dueDate);
     };
-    function getPriority(){
-        return(priority);
+    getPriority(){
+        return(this.priority);
     };
-    function getNotes(){
-        return(notes);
+    getNotes(){
+        return(this.notes);
     };
-    function getCheck(){
-        return(check);
+    getCheck(){
+        return(this.check);
     };
-    function getId(){
-        return(currentId);
+    getId(){
+        return(this.currentId);
     };
-    function setTitle(temp){
-        title = temp;
+    setTitle(temp){
+        this.title = temp;
     };
-    function setProjectName(temp){
-        projectName = temp;
+    setProjectName(temp){
+        this.projectName = temp;
     };
-    function setDescription(temp){
-        description = temp;
+    setDescription(temp){
+        this.description = temp;
     };
-    function setDueDate(temp){
-        dueDate = temp;
+    setDueDate(temp){
+        this.dueDate = temp;
     };
-    function setPriority(temp){
-        console.log(priority);
-        if(priority === 1){
-            priority = 0;
-        } else if(priority === 0){
-            priority = 1;
+    setPriority(temp){
+        console.log(this.priority);
+        if(this.priority === 1){
+            this.priority = 0;
+        } else if(this.priority === 0){
+            this.priority = 1;
         };
-        console.log(priority);
+        console.log(this.priority);
     };
-    function setNotes(temp){
-        notes = temp;
+    setNotes(temp){
+        this.notes = temp;
     };
-    function setCheck(temp){
-        if(check === true){
-            check = false;
-        } else if(check === false){
-            check = true;
+    setCheck(temp){
+        if(this.check === true){
+            this.check = false;
+        } else if(this.check === false){
+            this.check = true;
         }
-    };
-    return{
-    getTitle,
-    getProjectName,
-    getDescription,
-    getDueDate,
-    getPriority,
-    getNotes,
-    getCheck,
-    getId,
-    setTitle,
-    setProjectName,
-    setDescription,
-    setDueDate,
-    setPriority,
-    setNotes,
-    setCheck,
     };
 }
 class saveDataObject{
@@ -108,7 +92,7 @@ class saveDataObject{
         //const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check);
         for(let i = 0; i < PROJECT_LENGTH;i++){
             if(this.projects[i].id === projectId){
-                const tempObject = projectObject(title,projectName,description,dueDate,priority,notes,check,this.projects[i].todoId);
+                const tempObject = new projectObject(title,projectName,description,dueDate,priority,notes,check,this.projects[i].todoId);
                 this.projects[i].projectTodoList.push(tempObject);
                 this.projects[i].todoId++;
             };
@@ -226,8 +210,19 @@ class saveDataObject{
             };
         };
     };
-    setCheck(projectId,todoId){
-    };
+    reassign(){
+        const PROJECT_LENGTH = this.projects.length;
+        const todoListObject = new projectObject();
+        let currentProject;
+        let TODO_LENGTH;
+        for(let i = 0; i < PROJECT_LENGTH; i++){
+            TODO_LENGTH = this.projects[i].projectTodoList.length;
+            currentProject = this.projects[i].projectTodoList;
+            for(let j = 0; j < TODO_LENGTH;j++){
+                Object.setPrototypeOf(currentProject[j],todoListObject);
+            }
+        };
+    }
     filterRemoveProject(project){
         return(project.id != this);
     };
@@ -236,6 +231,6 @@ class saveDataObject{
     };
 };
 
-const saveData = new saveDataObject();
+//const saveData = new saveDataObject();
 
-export default saveData;
+export {saveDataObject};

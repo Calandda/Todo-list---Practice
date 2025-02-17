@@ -173,10 +173,11 @@ h1{
     position: relative;
     height: 60px;
     display: flex;
+    justify-content: space-between;
 }
 .divTodoProgressHeader > p{
    justify-self: center;
-   padding-left: 40px;
+   padding: 0px 140px 0px 140px;
    align-self: center;
 }
 .divTodoList{
@@ -462,4 +463,10 @@ h1{
     align-self: center;
 }
 
-
+.todoCountAll{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-self: center;
+    align-self: center;
+}

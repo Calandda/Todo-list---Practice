@@ -28,6 +28,7 @@ class domChangeObject{
         this.buttonDelete.addEventListener("click",(e)=>{
             projects.deleteProject(e.target.dataset.id);
             this.resetProjectList();
+            this.saveLocalStorage(projects);
             this.resetTodoList();
             this.changeHeader(projects.getProject()[0]);
             this.fillProject(projects);
@@ -76,6 +77,7 @@ class domChangeObject{
             );
             this.formAdd.reset();
             this.resetProjectList();
+            this.saveLocalStorage(projects);
             this.resetTodoList();
             this.fillProject(projects);
             this.fillTodoList(projects, projectId);
@@ -101,6 +103,7 @@ class domChangeObject{
                 this.formEdit.dataset.todoId);
             this.formEdit.reset();
             this.resetProjectList();
+            this.saveLocalStorage(projects);
             this.resetTodoList();
             this.fillProject(projects);
             this.fillTodoList(projects, projectId);
@@ -114,6 +117,7 @@ class domChangeObject{
             projects.changeProjectName(this.sectionProjectHeader.dataset.id,formData.get('inputHeaderTitle'));
             projects.getProject();
             this.resetProjectList();
+            this.saveLocalStorage(projects);
             this.resetTodoList();
             this.fillProject(projects);
             this.fillTodoList(projects, this.sectionProjectHeader.dataset.id);
@@ -199,6 +203,7 @@ class domChangeObject{
         submitCreate.addEventListener("click",(e)=>{
             project.createProject(inputCreate.value); 
             this.resetProjectList();
+            this.saveLocalStorage(project);
             this.fillProject(project);
         });
         divCreate.appendChild(submitCreate);
@@ -329,6 +334,7 @@ class domChangeObject{
         pCheck.addEventListener("click",(e)=>{
             projects.setBoolean(parseInt(pCheck.dataset.projectId),parseInt(pCheck.dataset.todoId),'check');
             this.resetProjectList();
+            this.saveLocalStorage(projects);
             this.resetTodoList();
             this.fillProject(projects);
             this.fillTodoList(projects, parseInt(pCheck.dataset.projectId));
@@ -336,6 +342,7 @@ class domChangeObject{
         pPriority.addEventListener("click",(e)=>{
             projects.setBoolean(parseInt(pCheck.dataset.projectId), parseInt(pCheck.dataset.todoId), 'priority');
             this.resetProjectList();
+            this.saveLocalStorage(projects);
             this.resetTodoList();
             this.fillProject(projects);
             this.fillTodoList(projects, parseInt(pCheck.dataset.projectId));
@@ -406,6 +413,9 @@ class domChangeObject{
             this.sectionProjectList.removeChild(this.sectionProjectList.firstChild);
         };
     };
+    saveLocalStorage(projects){
+        localStorage.setItem('saveData',JSON.stringify(projects));
+    }
     resetTodoList(){
         while(this.sectionTodoList.firstChild){
             this.sectionTodoList.removeChild(this.sectionTodoList.firstChild);
