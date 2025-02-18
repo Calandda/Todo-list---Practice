@@ -439,8 +439,6 @@ class domChangeObject{
             this.sectionTodoListComplete.removeChild(this.sectionTodoListComplete.firstChild);
         };
     };
-    openHeaderEdit(){
-    }
 }
 
 export default domChangeObject;

@@ -71,8 +71,8 @@ class saveDataObject{
     currentId = 0;
 
     constructor(){
-        this.createProject('default Project');
-        this.createProject('default Project Second');
+        this.createProject('Default Project');
+        this.createProject('Default Project(2)');
     }
     classTest(){
         console.log('saveData confirmed');
@@ -187,6 +187,9 @@ class saveDataObject{
     deleteProject(id){
         console.log('deleted project: projectId:' + id);
         this.projects = this.projects.filter(this.filterRemoveProject,id);
+        if(this.projects.length === 0){
+            this.createProject('Default Project');
+        }
     };
     deleteProjectList(projectId,todoId){
         const PROJECT_LENGTH = this.projects.length;
