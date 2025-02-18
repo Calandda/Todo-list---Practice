@@ -167,6 +167,23 @@ class saveDataObject{
             };
         };
     };
+    getTodoIndex(projectId,todoId){
+        const PROJECT_LENGTH = this.projects.length;
+        let TODO_LENGTH;
+        for(let i = 0; i < PROJECT_LENGTH;i++){
+            if(i === parseInt(projectId)){
+                TODO_LENGTH = this.projects[i].projectTodoList.length;
+                for(let j = 0;j < TODO_LENGTH;j++){
+                    console.log(todoId);
+                    console.log(this.projects[i].projectTodoList[j].getId() == parseInt(todoId));
+                    if(this.projects[i].projectTodoList[j].getId() === parseInt(todoId)){
+                        console.log('TODO_INDEX:'+j);
+                        return(j);
+                    };
+                };
+            };
+        };
+    };
     deleteProject(id){
         console.log('deleted project: projectId:' + id);
         this.projects = this.projects.filter(this.filterRemoveProject,id);
@@ -210,7 +227,7 @@ class saveDataObject{
             };
         };
     };
-    reassign(){
+    reassignObject(){
         const PROJECT_LENGTH = this.projects.length;
         const todoListObject = new projectObject();
         let currentProject;

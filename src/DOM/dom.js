@@ -141,13 +141,15 @@ class domChangeObject{
 
     fillTodoList(projects,projectId){
         let index = projects.getProjectIndex(projectId);
+        let todoIndex;
         //console.log('fillTodoList: LENGTH:' + projects.getProject().length + ' projectId:' + projectId +  ' INDEX:' + index);
         this.todoCountComplete.textContent = 0;
         this.todoCountProgress.textContent = 0;
         const TODO_LENGTH = projects.getProject()[index].projectTodoList.length; 
         for(let j = 1; j >= 0;j--){
             for(let i = 0;i < TODO_LENGTH;i++){
-                this.fillTodoListIndividual(projects,index,i,j);
+                todoIndex = projects.getTodoIndex(projectId,projects.getProject()[index].projectTodoList[i].getId());
+                this.fillTodoListIndividual(projects,index,todoIndex,j);
             };
         }
         this.fillTodoListAddButton(projects,index);
@@ -225,6 +227,7 @@ class domChangeObject{
     };
     fillTodoListIndividual(projects,PROJECT_INDEX,TODO_INDEX,PRIORITY){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
+        console.log(TODO_INDEX);
         
         //const divId = document.createElement('p');
         const divTodo = document.createElement('div');
@@ -386,6 +389,8 @@ class domChangeObject{
     };
     fillEditModal(projects,PROJECT_INDEX,TODO_INDEX){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
+        const dialogButtonEdit = document.querySelector('.buttonEditDelete'); 
+        const dialogEdit = document.querySelector('#dialogEdit');
         const modalEdit = document.querySelector('.formDialogEdit');
         modalEdit.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
         modalEdit.dataset.todoId = project.getId();
@@ -407,6 +412,16 @@ class domChangeObject{
         inputEditDate.value = project.getDueDate();
         //inputEditPriority.value = project.getPriority();
         inputEditNotes.value = project.getNotes();
+        dialogButtonEdit.addEventListener("click",(e)=>{
+            projects.deleteProjectList(PROJECT_INDEX,project.getId());
+            this.resetProjectList();
+            this.saveLocalStorage(projects);
+            this.resetTodoList();
+            this.fillProject(projects);
+            this.fillTodoList(projects, PROJECT_INDEX);
+            e.preventDefault();
+            dialogEdit.close();
+        });
     };
     resetProjectList(){
         while(this.sectionProjectList.firstChild){
