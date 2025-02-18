@@ -174,10 +174,10 @@ class saveDataObject{
             if(this.projects[i].id === parseInt(projectId)){
                 TODO_LENGTH = this.projects[i].projectTodoList.length;
                 for(let j = 0;j < TODO_LENGTH;j++){
-                    console.log(todoId);
-                    console.log(this.projects[i].projectTodoList[j].getId() == parseInt(todoId));
+                    //console.log(todoId);
+                    //console.log(this.projects[i].projectTodoList[j].getId() == parseInt(todoId));
                     if(this.projects[i].projectTodoList[j].getId() === parseInt(todoId)){
-                        console.log('TODO_INDEX:'+j);
+                        //console.log('TODO_INDEX:'+j);
                         return(j);
                     };
                 };
@@ -195,11 +195,11 @@ class saveDataObject{
         const PROJECT_LENGTH = this.projects.length;
         let currentProject;
         let TODO_LENGTH;
+        console.log('deleteProjectList: ' + projectId + ' ' + todoId + '');
         for(let i = 0; i < PROJECT_LENGTH;i++){
-            if(this.projects[i].id === projectId){
+            if(this.projects[i].id === parseInt(projectId)){
                 TODO_LENGTH = this.projects[i].projectTodoList.length;
                 currentProject = this.projects[i].projectTodoList;
-                //console.log(this.projects[i]);
                 for(let j = 0; j < TODO_LENGTH;j++){
                     //console.log(currentProject[j].getId() === todoId);
                     if(currentProject[j].getId() == todoId){

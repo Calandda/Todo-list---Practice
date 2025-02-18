@@ -16,6 +16,7 @@ class domChangeObject{
         this.todoCountComplete = document.querySelector('.todoCountComplete');
         this.buttonEditProjectTitle = document.querySelector('.buttonEditProjectTitle');
         this.buttonDelete = document.querySelector('.buttonDelete');
+        this.dialogButtonEdit = document.querySelector('.buttonEditDelete'); 
         this.formAdd = document.querySelector('.divDialogAdd');
         this.formEdit = document.querySelector('.formDialogEdit');
         this.formHeaderEdit = document.querySelector('#formEditHeader');
@@ -33,6 +34,18 @@ class domChangeObject{
             this.changeHeader(projects.getProject()[0]);
             this.fillProject(projects);
             this.fillTodoList(projects,projects.getProject()[0].id);
+        });
+        this.dialogButtonEdit.addEventListener("click",(e)=>{
+            e.preventDefault();
+            console.log(e.target.dataset.id + e.target.dataset.todoId);
+            projects.deleteProjectList(e.target.dataset.id,e.target.dataset.todoId);
+            this.resetProjectList();
+            this.saveLocalStorage(projects);
+            this.resetTodoList();
+            this.fillProject(projects);
+            this.fillTodoList(projects, e.target.dataset.id);
+            
+            dialogEdit.close();
         });
 
         this.divTodoProgress.addEventListener("click",(e)=>{
@@ -126,6 +139,7 @@ class domChangeObject{
             this.changeHeader(projects.getProject()[index]);
             e.preventDefault();
         });
+        
         // changeProjectList(title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check,projectId,newProjectId,todoId)
     };
     fillProject(projects){
@@ -140,18 +154,20 @@ class domChangeObject{
     };
 
     fillTodoList(projects,projectId){
+        console.log(projectId);
         let index = projects.getProjectIndex(projectId);
         let todoIndex;
         //console.log('fillTodoList: LENGTH:' + projects.getProject().length + ' projectId:' + projectId +  ' INDEX:' + index);
         this.todoCountComplete.textContent = 0;
         this.todoCountProgress.textContent = 0;
         console.log(projectId + ' ' + index);
+        
         const TODO_LENGTH = projects.getProject()[index].projectTodoList.length; 
         
         for(let j = 1; j >= 0;j--){
             for(let i = 0;i < TODO_LENGTH;i++){
                 todoIndex = projects.getTodoIndex(projectId,projects.getProject()[index].projectTodoList[i].getId());
-                console.log(projectId + ' ' + projects.getProject()[index].projectTodoList[i].getId() + ' ' + index);
+                //console.log(projectId + ' ' + projects.getProject()[index].projectTodoList[i].getId() + ' ' + index);
                 this.fillTodoListIndividual(projects,index,todoIndex,j);
             };
         }
@@ -230,7 +246,7 @@ class domChangeObject{
     };
     fillTodoListIndividual(projects,PROJECT_INDEX,TODO_INDEX,PRIORITY){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
-        console.log(TODO_INDEX);
+        //console.log(TODO_INDEX);
         
         //const divId = document.createElement('p');
         const divTodo = document.createElement('div');
@@ -392,14 +408,17 @@ class domChangeObject{
     };
     fillEditModal(projects,PROJECT_INDEX,TODO_INDEX){
         const project = projects.getProject()[PROJECT_INDEX].projectTodoList[TODO_INDEX];
-        const dialogButtonEdit = document.querySelector('.buttonEditDelete'); 
+        
         const dialogEdit = document.querySelector('#dialogEdit');
         const modalEdit = document.querySelector('.formDialogEdit');
         modalEdit.dataset.projectId = projects.getProject()[PROJECT_INDEX].id;
         modalEdit.dataset.todoId = project.getId();
         const submitButton = document.querySelector('.buttonEditSubmit');
+        const dialogButtonEdit = document.querySelector('.buttonEditDelete'); 
         submitButton.dataset.id = projects.getProject()[PROJECT_INDEX].id;
         submitButton.dataset.todoId = project.getId();
+        dialogButtonEdit.dataset.id = projects.getProject()[PROJECT_INDEX].id;
+        dialogButtonEdit.dataset.todoId = project.getId();
         const pMainTodoTitle = document.querySelector('.pMainTodoTitle');
         const inputEditTitle = document.querySelector('.inputEditTitle');
         const inputEditProjectTitle = document.querySelector('.inputEditProjectTitle');
@@ -415,16 +434,6 @@ class domChangeObject{
         inputEditDate.value = project.getDueDate();
         //inputEditPriority.value = project.getPriority();
         inputEditNotes.value = project.getNotes();
-        dialogButtonEdit.addEventListener("click",(e)=>{
-            projects.deleteProjectList(PROJECT_INDEX,project.getId());
-            this.resetProjectList();
-            this.saveLocalStorage(projects);
-            this.resetTodoList();
-            this.fillProject(projects);
-            this.fillTodoList(projects, PROJECT_INDEX);
-            e.preventDefault();
-            dialogEdit.close();
-        });
     };
     resetProjectList(){
         while(this.sectionProjectList.firstChild){
