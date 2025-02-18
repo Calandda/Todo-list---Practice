@@ -72,7 +72,7 @@ class saveDataObject{
 
     constructor(){
         this.createProject('Default Project');
-        this.createProject('Default Project(2)');
+        //this.createProject('Default Project(2)');
     }
     classTest(){
         console.log('saveData confirmed');
@@ -171,7 +171,7 @@ class saveDataObject{
         const PROJECT_LENGTH = this.projects.length;
         let TODO_LENGTH;
         for(let i = 0; i < PROJECT_LENGTH;i++){
-            if(i === parseInt(projectId)){
+            if(this.projects[i].id === parseInt(projectId)){
                 TODO_LENGTH = this.projects[i].projectTodoList.length;
                 for(let j = 0;j < TODO_LENGTH;j++){
                     console.log(todoId);
@@ -186,10 +186,10 @@ class saveDataObject{
     };
     deleteProject(id){
         console.log('deleted project: projectId:' + id);
-        this.projects = this.projects.filter(this.filterRemoveProject,id);
-        if(this.projects.length === 0){
+        if(this.projects.length === 1){
             this.createProject('Default Project');
         }
+        this.projects = this.projects.filter(this.filterRemoveProject,id);
     };
     deleteProjectList(projectId,todoId){
         const PROJECT_LENGTH = this.projects.length;

@@ -23,7 +23,7 @@ class domChangeObject{
         this.divTodoCompleted = document.querySelector('.divTodoCompleted');
         this.fillProject(projects);
         this.changeHeader(projects.getProject()[0]);
-        this.fillTodoList(projects,0);
+        this.fillTodoList(projects,projects.getProject()[0].id);
 
         this.buttonDelete.addEventListener("click",(e)=>{
             projects.deleteProject(e.target.dataset.id);
@@ -145,10 +145,13 @@ class domChangeObject{
         //console.log('fillTodoList: LENGTH:' + projects.getProject().length + ' projectId:' + projectId +  ' INDEX:' + index);
         this.todoCountComplete.textContent = 0;
         this.todoCountProgress.textContent = 0;
+        console.log(projectId + ' ' + index);
         const TODO_LENGTH = projects.getProject()[index].projectTodoList.length; 
+        
         for(let j = 1; j >= 0;j--){
             for(let i = 0;i < TODO_LENGTH;i++){
                 todoIndex = projects.getTodoIndex(projectId,projects.getProject()[index].projectTodoList[i].getId());
+                console.log(projectId + ' ' + projects.getProject()[index].projectTodoList[i].getId() + ' ' + index);
                 this.fillTodoListIndividual(projects,index,todoIndex,j);
             };
         }
@@ -439,6 +442,8 @@ class domChangeObject{
             this.sectionTodoListComplete.removeChild(this.sectionTodoListComplete.firstChild);
         };
     };
+    resetDisplay(projects, PROJECT_INDEX){
+    }
 }
 
 export default domChangeObject;
