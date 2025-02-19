@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset = 'UTF-8'>
+        <title>ToDo List</title>
+    <script defer src="main.js"></script></head>
+    <body>
+        <aside class = 'bgColorGray'>
+            <nav>
+                <img class = 'logoTodo' src = 'c18921b349a98ad64475.png'>
+                <p>TO-DO LIST</p>
+            </nav>
+            <section class = 'sectionProject'>
+                
+            </section>
+        </aside>
+        <main class = 'bgColorLightGray overflowTrue'>
+            <header class = 'headerProjectTitle'>
+                <h1>PLACEHOLDER</h1>
+                <form id = 'formEditHeader'>
+                    <input name="inputHeaderTitle" class = 'inputHeaderTitle fontMedium bgColorWhiteGray removeBorder inputBorder'></input>
+                    <button class = 'buttonHeaderEditSubmit buttonProject fontHeavy'>SUBMIT</button>
+                </form>
+                <section class = 'sectionButtonHeaders'>
+                    <button class = 'buttonProject fontHeavy' disabled="true">
+                        ADD TODO LIST ITEM
+                    </button>
+                    <button class = 'buttonEditProjectTitle buttonProject fontHeavy'>
+                        EDIT NAME
+                    </button>
+                    <button class = 'buttonDelete buttonProject fontHeavy'>
+                        DELETE
+                    </button>
+                </section>
+            </header>
+            <div class = 'divTodoProgress borderBlack'>
+                <div class = 'divTodoProgressHeader bgColorGray' data-switch = 1>
+                    <p class = 'fontHeavy'>IN PROGRESS</p>
+                    <p class = 'todoCountProgress todoCountAll'>0</p>
+                </div>
+                <section class = 'sectionTodo sectionTodoAll overflowTrue'>
+                </section>
+            </div>
+            <div class = 'divTodoCompleted borderBlack'>
+                <div class = 'divTodoCompleteHeader divTodoProgressHeader bgColorGray' data-switch = 1>
+                    <p class = 'fontHeavy'>COMPLETED</p>
+                    <p class = 'todoCountComplete todoCountAll'>0</p>
+                </div>
+                <section class = 'sectionTodoComplete sectionTodoAll overflowTrue'>
+                </section>
+            </div>
+        </main>
+        <dialog id = "dialogAdd" class = 'dialogAdd bgColorGray'>
+            <div>
+                <div class = 'divDialogHeader bgColorDarkGray'>
+                    <p class="pNew fontHeavy">ENTER NEW TO-DO LIST ITEM</p>
+                    <button class = "buttonDialogClose fontHeavy">X</button>
+                </div>
+                <form class = "divDialogAdd">
+                    <label class = 'pTitle fontHeavy' for="inputTitle">TITLE:</label><input name="inputTitle" class = 'inputTitle' type="text" placeholder="INPUT TITLE">
+                    <label class = 'pDescription fontHeavy' for="inputDescription">DESCRIPTION:</label><textarea name="inputDescription" class = 'inputDescription' placeholder="INPUT DESCRIPTION" rows = 3 cols 30></textarea>
+                    <label class = 'pDate fontHeavy' for="inputDate">DUE DATE:</label><input name="inputDate" class = 'inputDate' type="date" placeholder="INPUT DATE">
+                    <!-- <label class = 'pPriority fontHeavy' for="inputPriority">PRIORTY:</label><input name = "inputPriority" class = 'inputPriority' type='number'> -->
+                    <label class = 'pNotes fontHeavy' for="inputNotes">NOTES:</label><input name = "inputNotes" class = "inputNotes" type="textarea" placeholder ="notes">
+                    <button class = 'buttonSubmit'>SUBMIT</button>
+                </form>
+            </div>
+        </dialog>
+        <dialog id = 'dialogEdit' class = 'dialogAdd bgColorGray'>
+            <div class = 'divEditTitle bgColorDarkGray'>
+                <p class = 'pMainTodoTitle fontHeavy'>PLACEHOLDER</p>
+                <button class = 'buttonDialogEditClose fontHeavy'>X</button>
+            </div>
+            <form class = "formDialogEdit">
+                <label for = 'inputEditTitle' class = 'fontHeavy'>TITLE:</label><input class = 'inputEditTitle' name = 'inputEditTitle' type="text">
+                <label for = 'inputEditProjectTitle' class = 'fontHeavy'>PROJECT:</label><select class = 'inputEditProjectTitle' name = "inputEditProjectTitle" disabled =  true></select>
+                <label for = 'inputEditDescription' class = 'fontHeavy'>DESCRIPTION:</label><textarea class = 'inputEditDescription' name = "inputEditDescription"></textarea>
+                <label for = 'inputEditDate' class = 'fontHeavy'>Due Date:</label><input class = 'inputEditDate'name = 'inputEditDate' type = 'date'>
+                <!--<label for = 'inputEditPriority' class = 'fontHeavy'>Priority:</label><input class = 'inputEditPriority' name = 'inputEditPriority' type = 'number'>-->
+                <label for = 'inputEditNotes' class = 'fontHeavy'>Notes:</label><textarea class = 'inputEditNotes' name = 'inputEditNotes'></textarea>
+                <button class = 'buttonEditDelete'>DELETE EDIT</button>
+                <button class = 'buttonEditSubmit'>SUBMIT EDIT</button>
+                <!-- title,projectName,newTitle,newProjectName,description,dueDate,priority,notes,check-->
+            </form>
+        </dialog>
+    </body>
+</html>
